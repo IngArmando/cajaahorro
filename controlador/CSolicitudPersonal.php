@@ -23,7 +23,7 @@
 	$pago = $_POST['detalle_pago'];
 	$saldo = $_POST['detalle_saldo'];
 	
-	if($objBeneficio->guardarSolicitud(2)){//Si guarda correctamente mandamos el email	
+	if($objBeneficio->guardarSolicitud(1)){//Si guarda correctamente mandamos el email	
 		$ultimoId = $objBeneficio->ultimoIdSolicitud();
 		for($i=0;$i<=max($nro);$i++) {
 			$objBeneficio->registrar_detalle($nro[$i],$mes[$i],$anho[$i],$capital[$i],$amortizacion[$i],$pago[$i],$saldo[$i],$ultimoId);

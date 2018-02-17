@@ -74,7 +74,7 @@
             Préstamos
         </h2>
         <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal.php">
-            <h3 class="ui center aligned header"> Solicitud de Préstamo de Fondo Común  </h3> 
+            <h3 class="ui center aligned header"> Solicitud de Préstamo de Cesantia  </h3> 
             <!--<p align="justify">
                El préstamo debe ser respaldado por sus haberes disponibles,
                para solicitar un monto mayor debe indicar <?php echo number_format($fiadores, 0, ',', '.') ?>

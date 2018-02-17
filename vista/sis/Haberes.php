@@ -55,7 +55,7 @@ session_start();
   <div class="ui container">
     <h2 class="ui center aligned small block icon inverted header">
       <i class="archive icon"></i>
-      Haberes               
+      Aportes              
     </h2>
 
         <a class="ui labeled icon button" href="Inicio.php">

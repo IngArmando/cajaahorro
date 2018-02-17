@@ -100,17 +100,17 @@
               <tbody>
                 <tr>
                   <td>Saldo </td>
-                  <td>$ <?php echo number_format($Hab['saldo'], 2, ',', '.');  ?></td>
+                  <td>$ <?php echo number_format($Hab['saldo']);  ?></td>
                 </tr>
                 <tr>
                   <td>Bloqueado(Préstamos) <i class="ui fitted circle help icon" data-title="Ayuda" data-content="El saldo bloqueado por préstamos, representa el monto de sus haberes que se encuentra comprometido como respaldo de sus préstamos."></i></td>
-                  <td>$ <?php echo number_format($Hab['saldo_bloq_prestamo'], 2, ',', '.');  ?></td>
+                  <td>$ <?php echo number_format($Hab['saldo_bloq_prestamo']);  ?></td>
                 </tr>
               </tbody>
               <tfoot >
                 <tr>
                   <th>Total Disponible <i class="ui fitted circle help icon" data-title="Ayuda" data-content="El saldo disponible representa el monto de sus haberes que puede usar como respaldo para solicitudes de préstamos y financiamientos."></i></th>
-                  <th>$ <?php echo number_format( ($Hab['saldo']-$Hab['saldo_bloq_prestamo']), 2, ',', '.');  ?></th>
+                  <th>$ <?php echo number_format( ($Hab['saldo']-$Hab['saldo_bloq_prestamo']));  ?></th>
                 </tr>
               </tfoot>
             </table>
