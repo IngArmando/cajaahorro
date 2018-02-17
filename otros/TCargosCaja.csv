@@ -1,0 +1,6 @@
+id_cargo_caja,nombre,descripcion,fecha_ini,tipo_cargo,min_cant_personas,max_cant_personas,estatus
+1,Asociado,Docente afiliado a la Caja de Ahorros,2000-01-01,152,1,9999,1
+2,Analista de Crédito,Analista de Crédito Persona encargada de realizar los análisis correspondientes a las solicitudes de préstamo y programas de financiamiento.,2000-01-01,153,1,10,1
+3,Presidente,"Presidente del Consejo Administrativo, junto con los otros miembros del Consejo se encarga de la administración y gestión financiera de la Caja de Ahorros, tiene un papel decisivo en la aprobación de solicitudes de cualquier tipo.",2000-01-01,154,1,1,1
+4,Tesorero,"Tesorero del Consejo Administrativo, junto con los otros miembros del Consejo se encarga de la administración y gestión financiera de la Caja de Ahorros, tiene un papel decisivo en la aprobación de solicitudes de cualquier tipo.",2000-01-01,154,1,1,1
+5,Secretario,"Secretario del Consejo Administrativo, junto con los otros miembros del Consejo se encarga de la administración y gestión financiera de la Caja de Ahorros, tiene un papel decisivo en la aprobación de solicitudes de cualquier tipo.",2000-01-01,154,1,1,1

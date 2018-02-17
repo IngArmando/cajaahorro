@@ -1,0 +1,130 @@
+body {
+	 background: url(../image/body-bg.jpg) repeat center center fixed;
+     background-size: cover; 
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+}
+
+p,h3,h2,h1,li{
+    line-height: 1.7;
+    text-align: justify;
+    font-size: 1.1em;
+}
+
+.container{
+    width:800px;
+    margin: auto;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.login{
+	width:800px;
+	margin: auto;
+	background-color: white;
+	padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+}
+
+.badlogin{
+    background-color:#fff; 
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height:auto;
+    padding: 15px;
+    border: 10px;
+    border-color: #2762b0;
+    border-radius: 8px;
+
+}
+
+.cabecera 
+{
+    height: auto;
+    background: url('../image/head-bg.jpg') center center no-repeat scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+}
+
+.banner img
+{
+    top:25px;
+    margin-left: -500px;
+
+}
+
+.font-style {
+    text-align: center;
+    font-family: Tahoma;
+    color: #4183c4;
+    font-size: 16px;
+    padding: 9px;
+    text-transform: uppercase;
+}
+
+
+
+
+/* Mobile */
+
+@media only screen and (max-width: 767px) {
+    .mobile-hide{
+        display: none !important;
+    }
+}/* Mobile */
+
+@media only screen and (max-width: 767px) {
+    .mobile-small{
+        text-align: center;
+        font-family: Tahoma;
+        color: #4183c4;
+        font-size: 12px;
+        padding: 4px;
+        text-transform: uppercase;
+    }
+}
+
+/* Tablet */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .tablet-hide{
+        display: none !important;
+    }
+}
+
+/* Small Monitor */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .small-hide{
+        display: none !important;
+    }
+}
+
+
+/* Large Monitor */
+
+@media only screen and (min-width: 1200px) {
+    .large-hide{
+        display: none !important;
+    }
+}
+/* para el estilo del ajax */
+.ajax{ width:80%;display:none}
+.ajax{ background:#fff;height:auto;position:absolute;z-index:10; }
+.ajax a{ display:block;border-bottom:1px solid #ccc; }
+.ajax a:hover{ background:#eee;cursor:pointer; }
+button:disabled,button[disabled],input[type=button]:disabled,input[type=button][disabled],input[type=submit]:disabled,input[type=submit][disabled]{
+	background:#ccc!important;cursor:not-allowed!important;cursor:-webkit-not-allowed!important
+}
+select{ height: 24px!important; }

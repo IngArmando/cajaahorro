@@ -1,0 +1,15 @@
+body {
+	 background: url(../image/body-bg.jpg) repeat center center fixed;
+     background-size: cover; 
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+}
+
+#gale_t{
+margin: 0 auto;
+margin-top: 300px;
+width:800px;
+height:400px;
+
+}

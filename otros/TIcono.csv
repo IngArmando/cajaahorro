@@ -1,0 +1,514 @@
+id_icono,icono,estatus
+1,alarm,1
+2,alarm slash,1
+3,alarm outline,1
+4,alarm slash outline,1
+5,at,1
+6,browser,1
+7,bug,1
+8,calendar outline,1
+9,calendar,1
+10,cloud,1
+11,code,1
+12,comment,1
+13,comments,1
+14,comment outline,1
+15,comments outline,1
+16,copyright,1
+17,dashboard,1
+18,dropdown,1
+19,external square,1
+20,external,1
+21,eyedropper,1
+22,feed,1
+23,find,1
+24,heartbeat,1
+25,history,1
+26,home,1
+27,idea,1
+28,inbox,1
+29,lab,1
+30,mail,1
+31,mail outline,1
+32,mail square,1
+33,map,1
+34,options,1
+35,paint brush,1
+36,payment,1
+37,phone,1
+38,phone square,1
+39,privacy,1
+40,protect,1
+41,search,1
+42,setting,1
+43,settings,1
+44,shop,1
+45,sidebar,1
+46,signal,1
+47,sitemap,1
+48,tag,1
+49,tags,1
+50,tasks,1
+51,terminal,1
+52,text telephone,1
+53,ticket,1
+54,trophy,1
+55,wifi,1
+56,adjust,1
+57,add user,1
+58,add to cart,1
+59,archive,1
+60,ban,1
+61,bookmark,1
+62,call,1
+63,call square,1
+64,cloud download,1
+65,cloud upload,1
+66,compress,1
+67,configure,1
+68,download,1
+69,edit,1
+70,erase,1
+71,exchange,1
+72,external share,1
+73,expand,1
+74,filter,1
+75,flag,1
+76,flag outline,1
+77,forward mail,1
+78,hide,1
+79,in cart,1
+80,lock,1
+81,pin,1
+82,print,1
+83,random,1
+84,recycle,1
+85,refresh,1
+86,remove bookmark,1
+87,remove user,1
+88,repeat,1
+89,reply all,1
+90,reply,1
+91,retweet,1
+92,send,1
+93,send outline,1
+94,share alternate,1
+95,share alternate square,1
+96,share,1
+97,share square,1
+98,sign in,1
+99,sign out,1
+100,theme,1
+101,translate,1
+102,undo,1
+103,unhide,1
+104,unlock alternate,1
+105,unlock,1
+106,upload,1
+107,wait,1
+108,wizard,1
+109,write,1
+110,write square,1
+111,announcement,1
+112,birthday,1
+113,flag,1
+114,help,1
+115,help circle,1
+116,info,1
+117,info circle,1
+118,warning,1
+119,warning circle,1
+120,warning sign,1
+121,child,1
+122,doctor,1
+123,handicap,1
+124,spy,1
+125,student,1
+126,user,1
+127,users,1
+128,female,1
+129,gay,1
+130,heterosexual,1
+131,intergender,1
+132,lesbian,1
+133,male,1
+134,man,1
+135,neuter,1
+136,non binary transgender,1
+137,transgender,1
+138,other gender,1
+139,other gender horizontal,1
+140,other gender vertical,1
+141,woman,1
+142,grid layout,1
+143,list layout,1
+144,block layout,1
+145,zoom,1
+146,zoom out,1
+147,resize vertical,1
+148,resize horizontal,1
+149,maximize,1
+150,crop,1
+151,anchor,1
+152,bar,1
+153,bomb,1
+154,book,1
+155,bullseye,1
+156,calculator,1
+157,checkered flag,1
+158,cocktail,1
+159,diamond,1
+160,fax,1
+161,fire extinguisher,1
+162,fire,1
+163,gift,1
+164,leaf,1
+165,legal,1
+166,lemon,1
+167,life ring,1
+168,lightning,1
+169,magnet,1
+170,money,1
+171,moon,1
+172,plane,1
+173,puzzle,1
+174,rain,1
+175,road,1
+176,rocket,1
+177,shipping,1
+178,soccer,1
+179,suitcase,1
+180,sun,1
+181,travel,1
+182,treatment,1
+183,world,1
+184,asterisk,1
+185,certificate,1
+186,circle,1
+187,circle notched,1
+188,circle thin,1
+189,crosshairs,1
+190,cube,1
+191,cubes,1
+192,ellipsis horizontal,1
+193,ellipsis vertical,1
+194,quote left,1
+195,quote right,1
+196,spinner,1
+197,square,1
+198,square outline,1
+199,add circle,1
+200,add square,1
+201,check circle,1
+202,check circle outline,1
+203,check square,1
+204,checkmark box,1
+205,checkmark,1
+206,minus circle,1
+207,minus,1
+208,minus square,1
+209,minus square outline,1
+210,move,1
+211,plus,1
+212,plus square outline,1
+213,radio,1
+214,remove circle,1
+215,remove circle outline,1
+216,remove,1
+217,selected radio,1
+218,toggle off,1
+219,toggle on,1
+220,area chart,1
+221,bar chart,1
+222,camera retro,1
+223,newspaper,1
+224,film,1
+225,line chart,1
+226,photo,1
+227,pie chart,1
+228,sound,1
+229,angle double down,1
+230,angle double left,1
+231,angle double right,1
+232,angle double up,1
+233,angle down,1
+234,angle left,1
+235,angle right,1
+236,angle up,1
+237,arrow circle down,1
+238,arrow circle left,1
+239,arrow circle outline down,1
+240,arrow circle outline left,1
+241,arrow circle outline right,1
+242,arrow circle outline up,1
+243,arrow circle right,1
+244,arrow circle up,1
+245,arrow down,1
+246,arrow left,1
+247,arrow right,1
+248,arrow up,1
+249,caret down,1
+250,caret left,1
+251,caret right,1
+252,caret up,1
+253,chevron circle down,1
+254,chevron circle left,1
+255,chevron circle right,1
+256,chevron circle up,1
+257,chevron down,1
+258,chevron left,1
+259,chevron right,1
+260,chevron up,1
+261,long arrow down,1
+262,long arrow left,1
+263,long arrow right,1
+264,long arrow up,1
+265,pointing down,1
+266,pointing left,1
+267,pointing right,1
+268,pointing up,1
+269,toggle down,1
+270,toggle left,1
+271,toggle right,1
+272,toggle up,1
+273,desktop,1
+274,disk outline,1
+275,file archive outline,1
+276,file audio outline,1
+277,file code outline,1
+278,file excel outline,1
+279,file,1
+280,file image outline,1
+281,file outline,1
+282,file pdf outline,1
+283,file powerpoint outline,1
+284,file text,1
+285,file text outline,1
+286,file video outline,1
+287,file word outline,1
+288,folder,1
+289,folder open,1
+290,folder open outline,1
+291,folder outline,1
+292,game,1
+293,keyboard,1
+294,laptop,1
+295,level down,1
+296,level up,1
+297,mobile,1
+298,power,1
+299,plug,1
+300,tablet,1
+301,trash,1
+302,trash outline,1
+303,barcode,1
+304,css3,1
+305,database,1
+306,fork,1
+307,html5,1
+308,openid,1
+309,qrcode,1
+310,rss,1
+311,rss square,1
+312,server,1
+313,empty heart,1
+314,empty star,1
+315,frown,1
+316,heart,1
+317,meh,1
+318,smile,1
+319,star half empty,1
+320,star half,1
+321,star,1
+322,thumbs down,1
+323,thumbs outline down,1
+324,thumbs outline up,1
+325,thumbs up,1
+326,backward,1
+327,eject,1
+328,fast backward,1
+329,fast forward,1
+330,forward,1
+331,music,1
+332,mute,1
+333,pause,1
+334,play,1
+335,record,1
+336,step backward,1
+337,step forward,1
+338,stop,1
+339,unmute,1
+340,video play,1
+341,video play outline,1
+342,volume down,1
+343,volume off,1
+344,volume up,1
+345,building,1
+346,building outline,1
+347,car,1
+348,coffee,1
+349,emergency,1
+350,first aid,1
+351,food,1
+352,h,1
+353,hospital,1
+354,location arrow,1
+355,marker,1
+356,military,1
+357,paw,1
+358,space shuttle,1
+359,spoon,1
+360,taxi,1
+361,tree,1
+362,university,1
+363,columns,1
+364,sort alphabet ascending,1
+365,sort alphabet descending,1
+366,sort ascending,1
+367,sort content ascending,1
+368,sort content descending,1
+369,sort descending,1
+370,sort,1
+371,sort numeric ascending,1
+372,sort numeric descending,1
+373,table,1
+374,align center,1
+375,align justify,1
+376,align left,1
+377,align right,1
+378,attach,1
+379,bold,1
+380,copy,1
+381,cut,1
+382,font,1
+383,header,1
+384,indent,1
+385,italic,1
+386,linkify,1
+387,list,1
+388,ordered list,1
+389,outdent,1
+390,paragraph,1
+391,paste,1
+392,save,1
+393,strikethrough,1
+394,subscript,1
+395,superscript,1
+396,text height,1
+397,text width,1
+398,underline,1
+399,unlink,1
+400,unordered list,1
+401,dollar,1
+402,euro,1
+403,lira,1
+404,pound,1
+405,ruble,1
+406,rupee,1
+407,shekel,1
+408,won,1
+409,yen,1
+410,american express,1
+411,discover,1
+412,google wallet,1
+413,mastercard,1
+414,paypal card,1
+415,paypal,1
+416,stripe,1
+417,visa,1
+418,adn,1
+419,android,1
+420,angellist,1
+421,apple,1
+422,behance,1
+423,behance square,1
+424,bitbucket,1
+425,bitbucket square,1
+426,bitcoin,1
+427,buysellads,1
+428,codepen,1
+429,connectdevelop,1
+430,dashcube,1
+431,delicious,1
+432,deviantart,1
+433,digg,1
+434,dribbble,1
+435,dropbox,1
+436,drupal,1
+437,empire,1
+438,facebook,1
+439,facebook square,1
+440,flickr,1
+441,forumbee,1
+442,foursquare,1
+443,git,1
+444,git square,1
+445,github alternate,1
+446,github,1
+447,github square,1
+448,gittip,1
+449,google,1
+450,google plus,1
+451,google plus square,1
+452,hacker news,1
+453,instagram,1
+454,ioxhost,1
+455,joomla,1
+456,jsfiddle,1
+457,lastfm,1
+458,lastfm square,1
+459,leanpub,1
+460,linkedin,1
+461,linkedin square,1
+462,linux,1
+463,maxcdn,1
+464,meanpath,1
+465,medium,1
+466,pagelines,1
+467,pied piper alternate,1
+468,pied piper,1
+469,pinterest,1
+470,pinterest square,1
+471,qq,1
+472,rebel,1
+473,reddit,1
+474,reddit square,1
+475,renren,1
+476,sellsy,1
+477,shirtsinbulk,1
+478,simplybuilt,1
+479,skyatlas,1
+480,skype,1
+481,slack,1
+482,slideshare,1
+483,soundcloud,1
+484,spotify,1
+485,stack exchange,1
+486,stack overflow,1
+487,steam,1
+488,steam square,1
+489,stumbleupon circle,1
+490,stumbleupon,1
+491,tencent weibo,1
+492,trello,1
+493,tumblr,1
+494,tumblr square,1
+495,twitch,1
+496,twitter,1
+497,twitter square,1
+498,viacoin,1
+499,vimeo,1
+500,vine,1
+501,vk,1
+502,wechat,1
+503,weibo,1
+504,whatsapp,1
+505,windows,1
+506,wordpress,1
+507,xing,1
+508,xing square,1
+509,yahoo,1
+510,yelp,1
+511,youtube,1
+512,youtube play,1
+513,youtube square,1

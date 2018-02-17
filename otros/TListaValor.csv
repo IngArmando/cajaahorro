@@ -1,0 +1,201 @@
+id_lista_valor,id_lista,nombre_corto,nombre_largo,id_padre,posicion,estatus,bloq
+1,1,,Soltero,,1,1,1
+2,1,,Casado,,2,1,1
+3,1,,Viudo,,3,1,1
+4,1,,Divorciado,,4,1,1
+5,2,M,Masculino,,,1,1
+6,2,F,Femenino,,,1,1
+7,3,,Acarigua,,1,1,0
+8,3,,Turén,,2,1,0
+9,3,,Guanare,,3,1,0
+10,4,,0414,,,1,1
+11,4,,0424,,,1,1
+12,4,,0416,,,1,1
+13,4,,0426,,,1,1
+14,4,,0412,,,1,1
+15,5,,0248,,,1,1
+16,5,,0281,,,1,1
+17,5,,0282,,,1,1
+18,5,,0283,,,1,1
+19,5,,0285,,,1,1
+20,5,,0292,,,1,1
+21,5,,0240,,,1,1
+22,5,,0247,,,1,1
+23,5,,0278,,,1,1
+24,5,,0243,,,1,1
+25,5,,0244,,,1,1
+26,5,,0246,,,1,1
+27,5,,0273,,,1,1
+28,5,,0278,,,1,1
+29,5,,0284,,,1,1
+30,5,,0285,,,1,1
+31,5,,0286,,,1,1
+32,5,,0288,,,1,1
+33,5,,0289,,,1,1
+34,5,,0241,,,1,1
+35,5,,0242,,,1,1
+36,5,,0243,,,1,1
+37,5,,0245,,,1,1
+38,5,,0249,,,1,1
+39,5,,0258,,,1,1
+40,5,,0287,,,1,1
+41,5,,0212,,,1,1
+42,5,,0259,,,1,1
+43,5,,0268,,,1,1
+44,5,,0269,,,1,1
+45,5,,0279,,,1,1
+46,5,,0235,,,1,1
+47,5,,0238,,,1,1
+48,5,,0246,,,1,1
+49,5,,0247,,,1,1
+50,5,,0251,,,1,1
+51,5,,0252,,,1,1
+52,5,,0253,,,1,1
+53,5,,0271,,,1,1
+54,5,,0274,,,1,1
+55,5,,0275,,,1,1
+56,5,,0212,,,1,1
+57,5,,0234,,,1,1
+58,5,,0239,,,1,1
+59,5,,0287,,,1,1
+60,5,,0291,,,1,1
+61,5,,0292,,,1,1
+62,5,,0295,,,1,1
+63,5,,0255,,,1,1
+64,5,,0256,,,1,1
+65,5,,0257,,,1,1
+66,5,,0272,,,1,1
+67,5,,0293,,,1,1
+68,5,,0294,,,1,1
+69,5,,0275,,,1,1
+70,5,,0276,,,1,1
+71,5,,0277,,,1,1
+72,5,,0278,,,1,1
+73,5,,0271,,,1,1
+74,5,,0272,,,1,1
+75,5,,0212,,,1,1
+76,5,,0251,,,1,1
+77,5,,0253,,,1,1
+78,5,,0254,,,1,1
+79,5,,0262,,,1,1
+80,5,,0263,,,1,1
+81,5,,0264,,,1,1
+82,5,,0265,,,1,1
+83,5,,0266,,,1,1
+84,5,,0267,,,1,1
+85,5,,0271,,,1,1
+86,5,,0275,,,1,1
+87,6,,"Fotocopia de la cédula de identidad.",,,1,0
+88,6,,"Último comprobante de pago (fotocopia).",,,1,0
+89,6,,"Avalúo del inmueble efectuado por un perito evaluador, legalmente autorizado para ese fin.",,,1,0
+90,6,,"Plano de la Planta, Terreno, Construcción.",,,1,0
+91,6,,"Documento de Propiedad debidamente registrado.",,,1,0
+92,6,,"Certificación libre de gravámenes",,,1,0
+93,6,,"Presupuesto de construcción, avalado por un perito legalmente autorizado para tal fin.",,,1,0
+94,6,,"Carta de compromiso del propietario hacia el comprador.",,,1,0
+95,6,,"Presupuesto de valor de la vivienda (adquisición).",,,1,0
+96,6,,"Documento de hipoteca constituida (liberacion).",,,1,0
+97,6,,"Saldo deudor del inmueble (liberacion).",,,1,0
+98,6,,"Constancia de trabajo actualizada especificando el ingreso.",,,1,0
+99,6,,"Declaracion jurada y notariada de no poseer vivienda propia.",,,1,0
+100,6,,"Hipoteca a favor de CAPPIUTEP (tramitado por CAPPIUTEP)",,,1,0
+101,6,,"Balance personal suscrito por un Contador Público colegiado, debidamente visado y soportado en lo posible.",,,1,0
+102,6,,"Seguro de vida, incendio y terremoto, a favor de CAPPIUTEP (tramitado por CAPPIUTEP).",,,1,0
+103,6,,"Tabla de Amortización.",,,1,0
+104,6,,"Estado de cuenta.",,,1,0
+105,6,,"Plano de la remodelación firmado por un perito o arquitecto.",,,1,0
+106,6,,"Presupuesto de la remodelación y/o ampliación.",,,1,0
+107,6,,"Fotografía del inmueble (antes y después).",,,1,0
+108,6,,"Estado de cuenta de los Fiadores.",,,1,0
+109,6,,"Comprobante de depósito bancario a nombre de CAPPIUTEP.",,,1,0
+110,7,0001,"BANCO CENTRAL DE VENEZUELA",,,1,1
+111,7,0102,"BANCO DE VENEZUELA S.A.C.A. BANCO UNIVERSAL",,,1,1
+112,7,0104,"VENEZOLANO DE CRÉDITO, S.A. BANCO UNIVERSAL",,,1,1
+113,7,0105,"BANCO MERCANTIL, C.A. S.A.C.A. BANCO UNIVERSAL",,,1,1
+114,7,0108,"BANCO PROVINCIAL, S.A. BANCO UNIVERSAL",,,1,1
+115,7,0114,"BANCO DEL CARIBE, C.A. BANCO UNIVERSAL",,,1,1
+116,7,0115,"BANCO EXTERIOR, C.A. BANCO UNIVERSAL",,,1,1
+117,7,0116,"BANCO OCCIDENTAL DE DESCUENTO BANCO UNIVERSAL, C.A.",,,1,1
+118,7,0128,"BANCO CARONI, C.A. BANCO UNIVERSAL",,,1,1
+119,7,0134,"BANESCO BANCO UNIVERSAL S.A.C.A.",,,1,1
+120,7,0137,"BANCO SOFITASA BANCO UNIVERSAL, C.A.",,,1,1
+121,7,0138,"BANCO PLAZA, BANCO UNIVERSAL C.A.",,,1,1
+122,7,0146,"BANCO DE LA GENTE EMPRENDEDORA BANGENTE, C.A.",,,1,1
+123,7,0149,"BANCO DEL PUEBLO SOBERANO, BANCO DE DESARROLLO",,,1,1
+124,7,0151,"BFC BANCO FONDO COMUN C.A. BANCO UNIVERSAL",,,1,1
+125,7,0156,"100% BANCO, BANCO COMERCIAL, C.A.",,,1,1
+126,7,0157,"DELSUR BANCO UNIVERSAL, C.A.",,,1,1
+127,7,0163,"BANCO DEL TESORO, C.A. BANCO UNIVERSAL",,,1,1
+128,7,0166,"BANCO AGRICOLA DE VENEZUELA, C.A. BANCO UNIVERSAL",,,1,1
+129,7,0168,"BANCRECER S.A. BANCO DE DESARROLLO",,,1,1
+130,7,0169,"MI BANCO, BANCO MICROFINANCIERO, C.A.",,,1,1
+131,7,0171,"BANCO ACTIVO, C.A. BANCO UNIVERSAL",,,1,1
+132,7,0172,"BANCAMIGA BANCO MICROFINANCIERO, C.A.",,,1,1
+133,7,0173,"BANCO INTERNACIONAL DE DESARROLLO, C.A. BANCO UNIVERSAL",,,1,1
+134,7,0174,"BANPLUS BANCO UNIVERAL, C.A.",,,1,1
+135,7,0175,"BANCO BICENTENARIO BANCO UNIVERSAL, C.A.",,,1,1
+136,7,0176,"NOVO BANCO, S.A. SUCURSAL VENEZUELA BANCO UNIVERSAL",,,1,1
+137,7,0177,"BANCO DE LA FUERZA ARMADA NACIONAL BOLIVARIANA, B.U.",,,1,1
+138,7,0190,"CITIBANK N.A.",,,1,1
+139,7,0191,"BANCO NACIONAL CRÉDITO, C.A. BANCO UNIVERSAL",,,1,1
+140,7,0601,"INSTITUTO MUNICIPAL DE CRÉDITO POPULAR",,,1,1
+141,8,,Ahorros,,,1,1
+142,8,,Corriente,,,1,1
+143,9,V,Venezolano,,,1,1
+144,9,E,Extranjero,,,1,1
+145,10,,Nuevo,,,1,1
+146,10,,Activo,,,1,1
+147,10,,Bloqueado,,,1,1
+148,10,,Inactivo,,,1,1
+149,11,,Solvente,,,1,1
+150,11,,No Solvente,,,1,1
+151,11,,Retirado,,,1,1
+152,12,,Asociado,,1,1,0
+153,12,,Personal Administrativo,,2,1,0
+154,12,,Consejo Administrativo,,3,1,0
+155,13,,Socio,152,,1,0
+156,13,,Analista,153,,1,0
+157,13,,Presidente,154,,1,0
+158,13,,Tesorero,154,,1,0
+159,13,,Secretario,154,,1,0
+160,14,,Docente Ordinario,,,1,0
+161,14,,Docente Contratado,,,1,0
+162,14,,Personal Administrativo,,,1,0
+163,15,,Tiempo Convencional,,,1,0
+164,15,,Medio Tiempo,,,1,0
+165,15,,Tiempo Completo,,,1,0
+166,15,,Exclusiva,,,1,0
+167,16,,Instructor,,,1,0
+168,16,,Asistente,,,1,0
+169,16,,Agregado,,,1,0
+170,16,,Asociado,,,1,0
+171,16,,Titular,,,1,0
+172,17,,Padre,,,1,1
+173,17,,Madre,,,1,1
+174,17,,Hermano,,,1,1
+175,17,,Cónyugue,,,1,1
+176,17,,Hijo,,,1,1
+178,18,,Nunca Abierto,,,1,1
+179,18,,Abierto,,,1,1
+180,18,,Pre-Cerrado,,,1,1
+181,18,,Cerrado,,,1,1
+182,19,,Préstamo,,,1,1
+183,19,,Financiamiento,,,1,1
+184,19,,Retiro,,,1,1
+185,19,,Otro,,,1,1
+186,20,,Efectivo,,,1,1
+187,20,,Cheque,,,1,1
+188,20,,Transferencia,,,1,1
+189,21,,Abono a cuenta,,,1,1
+190,21,,Cancelación total,,,1,1
+191,21,,Cancelación couta especial,,,1,1
+192,22,,Línea Blanca,,,1,0
+193,22,,Línea Marrón,,,1,0
+194,22,,Computación y equipos electrónicos,,,1,0
+195,22,,Teléfonos Celulares,,,1,0
+196,22,,Neumáticos,,,1,0
+197,22,,Crédito Hipotecario,,,1,0
+198,22,,Vehículo,,,1,0
+199,22,,Filtros de Agua,,,1,0
+200,22,,Acciones de Clubes,,,1,0
+201,22,,Fondo de Salud,,,1,0

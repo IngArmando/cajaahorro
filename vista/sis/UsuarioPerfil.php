@@ -1,0 +1,81 @@
+<?php
+session_start();
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Perfil de Usuario</title>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../../image/favicon.png" /> <!-- Icono en el navegador -->
+  <!--  Propiedades -->
+  <!-- - - - - - - - - - - - - - - -    CSS - - -  - - - - - - - - - - - - - - -  -->
+  <link rel="stylesheet" type="text/css" href="../../css/Bootstrap/css/bootstrap.css"> <!--Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="../../css/SemanticUI/semantic.css"><!-- Interface de usuario -->
+  <link rel="stylesheet" type="text/css" href="../../js/sweetalert2/dist/sweetalert2.css">
+  <link rel="stylesheet" type="text/css" href="../../js/DataTables/media/css/dataTables.bootstrap.css"><!-- Bootstrap Tablas -->
+  <link rel="stylesheet" type="text/css" href="../../css/css.css" /><!-- CSS Base -->
+  <link rel="stylesheet" type="text/css" href="../../js/jquery-ui/jquery-ui.css" /><!-- JQuery UI CSS -->
+
+  <!-- - - - - - - - - - - - - - - - Librerias Java- - - - - - - - - - - - - - -  -->
+  <script src="../../js/jquery-2.1.4.min.js"></script><!--JQuery -->
+  <script src="../../js/main.js"></script> <!--Configura Interfaz -->
+  <script src="../../js/DataTablesConfig.js"></script> <!--Configura Interfaz -->
+  <script src="../../js/JsLista.js"></script> <!--Validaciones --> 
+  <script src="../../js/chainSelect.min.js"></script> <!--Validaciones --> 
+  <script src="../../css/SemanticUI/semantic.js"></script><!-- Interface de usuario -->
+  <script src="../../js/jquery-ui/jquery-ui.js"></script><!-- Selector de fecha -->
+  <script src="../../js/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="../../js/DataTables/media/js/jquery.dataTables.js"></script><!-- Filtro de tabla -->
+  <script src="../../js/DataTables/media/js/dataTables.bootstrap.min.js"></script><!-- Bootstrap -->
+  <script src="../../js/jquery-ui/jquery-ui.js"></script><!-- Selector de fecha -->
+</head>
+
+<body>
+    <?php include_once('Menu.php'); ?>
+  <div class='ui container'>
+    <div class='ui center aligned stackable grid'>
+      <div class='one column row'>
+        <div class='center aligned column'>
+          <h2 class='ui center aligned tiny block icon inverted header'>
+            <i class='user icon'></i>
+            Perfil de Usuario                
+          </h2>
+        </div>
+      </div>
+
+      <div class='three column row'>
+
+        <div class='column'>
+          <a class='ui icon header' href='PerfilCambiarContraseña.php'>
+            <i class='blue protect icon'></i>
+            <div class='content'>Cambiar Contraseña</div>     
+          </a>          
+        </div>
+
+        <div class='column'>
+          <a class='ui icon header' href='PerfilCambiarPregunta.php'>
+            <i class='blue help circle icon'></i>
+            <div class='content'>Cambiar Preguntas de Seguridad</div>     
+          </a>          
+        </div>
+
+        <div class='column'>
+          <a class='ui icon header' href='PerfilActividadReciente.php'>
+            <i class='blue history icon'></i>
+            <div class='content'>Actividad Reciente</div>     
+          </a>          
+        </div>
+
+      </div>
+
+       
+      </div>  
+    </div>
+  </div>
+</div>
+</body>
+</html>

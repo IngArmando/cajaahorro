@@ -1,0 +1,5 @@
+id_modulo,descripcion,id_icono,id_padre,posicion,estatus
+1,Administrar,47,NULL,3,1
+2,Configuración,43,NULL,4,1
+3,Socio,126,NULL,1,1
+4,Beneficios,256,NULL,2,1

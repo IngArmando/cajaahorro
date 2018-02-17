@@ -1,0 +1,103 @@
+body
+{
+   
+	
+    background: url('../image/fgale.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+	
+}
+  h1{
+  
+ padding:50px;
+color: #f2f2f2;
+text-shadow: 0px -1px 0px #424242;
+font-size: 50px;
+font-family: 'Unna', serif;
+text-align: center;
+	
+  
+  
+  }
+  
+  #caja{
+  margin: 0 auto;
+  width:800px;
+  height:auto;
+  margin-bottom:20px;
+  
+  
+  
+border:inset 1px #000000;
+-moz-border-radius-topleft: 0px;
+-moz-border-radius-topright:75px;
+-moz-border-radius-bottomleft:75px;
+-moz-border-radius-bottomright:0px;
+-webkit-border-top-left-radius:0px;
+-webkit-border-top-right-radius:75px;
+-webkit-border-bottom-left-radius:75px;
+-webkit-border-bottom-right-radius:0px;
+border-top-left-radius:0px;
+border-top-right-radius:75px;
+border-bottom-left-radius:75px;
+border-bottom-right-radius:0px;
+
+
+
+-moz-box-shadow: 1px 1px 14px #000000;
+-webkit-box-shadow: 1px 1px 14px #000000;
+box-shadow: 1px 1px 14px #000000;
+  
+  
+ }
+ 
+p{
+
+ padding:25px;
+text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+font-size: 25px;
+font-family: 'Unna', serif;
+text-align: justify;
+
+}
+
+
+
+#head{
+margin-top:50px;
+}
+
+
+ h4{
+  
+ padding:3px;
+color: #GRAY;
+text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+font-size: 40px;
+font-family: 'Unna', serif;
+text-align: center;
+
+}
+
+img{
+padding:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

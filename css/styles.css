@@ -1,0 +1,62 @@
+.modal-footer {   border-top: 0px; }
+
+body
+{
+     background: url('../image/fi5.jpg')repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+	overflow-y:scroll;
+	
+}
+
+#loginModal
+{
+margin-top:200px;
+
+}
+
+.modal-content
+{
+
+background-color: transparent ;
+
+}
+.logopr
+{
+
+padding: 0px;
+height: auto;
+width: 60px;
+position: absolute;
+margin-left:250px;
+
+}
+
+.form-control input-lg{
+background-image: url (../image/user.png);
+
+
+}
+
+.container2
+{
+margin-top:100px;
+ width: 500px;
+margin: 0 auto;
+ border-radius: 5px;
+padding : 3px;
+}
+
+
+#sub-cont{
+
+margin: 0 auto;
+margin-top: 100px;
+
+
+
+}
+
+

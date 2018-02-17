@@ -1,0 +1,11 @@
+id_beneficio_plazo,id_beneficio,nombre_plazo,min_meses,max_meses,min_cuotas_esp,max_cuotas_esp,estatus
+1,1,Corto,6,6,0,0,1
+2,2,Corto,24,24,4,4,1
+3,2,Mediano,48,48,8,8,1
+4,2,Largo,72,72,12,12,1
+5,3,Corto,24,24,4,4,1
+6,3,Mediano,48,48,8,8,1
+7,3,Largo,72,72,12,12,1
+8,5,Corto,24,24,4,4,1
+9,5,Mediano,48,48,8,8,1
+10,5,Largo,72,72,12,12,1
