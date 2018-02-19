@@ -680,11 +680,11 @@ class Socio extends CModeloDatos  {
       $saldo_disp=$saldo_total*0.8;
       $MarcasSelect[$pos++]="<tr>
                    <td>".date('d/m/Y',strtotime( $row['fecha_cierre'] ))."</td>
-                   <td>".number_format($row['saldo'], 2, ',', '.')."</td>
-                   <td>".number_format($row['saldo_bloq_prestamo'], 2, ',', '.')."</td>
-                   <td>".number_format($row['saldo_bloq_fianza'], 2, ',', '.')."</td>
-                   <td>".number_format($saldo_total, 2, ',', '.')."</td>
-                   <td>".number_format($saldo_disp, 2, ',', '.')."</td>
+                   <td>".number_format($row['saldo'])."</td>
+                   <td>".number_format($row['saldo_bloq_prestamo'])."</td>
+                   <td>".number_format($row['saldo_bloq_fianza'])."</td>
+                   <td>".number_format($saldo_total)."</td>
+                   <td>".number_format($saldo_disp)."</td>
                   </tr>";
     }
     $MarcasSelect[$pos++]="</tbody></table>";

@@ -10,11 +10,14 @@ session_start();
 
   if (isset($_SESSION["userActivo"])){
       $OSocio -> setCedula($_SESSION["userActivo"]);
-      $registro=$OSocio -> busCedulaDetalle();
+      $sqll="select * from cappiutep.t_persona where cedula='".$_SESSION["userActivo"]."'";
+      $registro=$OSocio -> ejecutar($sqll);
       while ( $fila = $OSocio->setArreglo( $registro ))
           $datos[] = $fila;
       foreach ($datos as $Soc) { $Soc; }
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +84,7 @@ session_start();
       </div> 
     <div class="ui block dividing header"></div>
     <?php
+
       $listado=$OSocio->listarHaber($Soc["id_persona"]);
       foreach ($listado as $tagtp){echo $tagtp;}
     ?>

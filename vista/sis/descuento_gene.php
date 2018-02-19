@@ -123,7 +123,7 @@ session_start();
 
             $dbd=new CModeloDatos;
 
-                $sqld="SELECT *
+              $sqld="SELECT *
                 FROM cappiutep.t_compra AS b
                 INNER JOIN cappiutep.t_casa_comercial AS tp ON tp.id_casa_comercial=b.id_casa_comercial
                 WHERE b.id_persona=".$_POST['dni']." and b.ano='".$_POST['ano']."' and b.mes='".$_POST['mes']."' "; 
@@ -209,15 +209,15 @@ session_start();
 
                     echo '
                     <tr>
-                        <td><b></b> : '.$rowde['nombre'].'</td>
+                        <td><b></b> <b>'.$rowde['nombre'].'</b></td>
                         <td>'.$rowde['pago'].' </td>
                         <td><input type="text" class="form-control" '.$listobe.' '.$genebe.' id="bene'.$bene.'" onblur="guarda_beneficio(this.value,'.$bene.','.$rowde['pago'].','.$rowde['id_detalle_amortizacion'].')" name="" value="'.number_format($descontadobe,2).'"></td>
                         <td id="mdifbe'.$bene.'">'.number_format($difbe,2).'</td>
                     </tr>';
 
                     $hg+=$rowde['pago'];
-                    $dc+=$dif;
-                    $dco+=$descontado;
+                    $dc+=$difbe;
+                    $dco+=$descontadobe;
                     
 
 
