@@ -344,7 +344,7 @@
 		//--------------------------------------------------------------------        
         public function datosSocio() {
             $id = (isset($_SESSION["idUsuario"]))?$_SESSION["idUsuario"]:"";
-            $consulta = $this->ejecutar("SELECT s.nombre1,s.apellido1,s.id_tipo_persona,s.fondocomun FROM cappiutep.t_usuario AS u INNER JOIN cappiutep.t_persona AS s ON u.id_persona = s.id_persona WHERE id_usuario=$id");
+            $consulta = $this->ejecutar("SELECT s.nombre1,s.apellido1,s.id_tipo_persona,s.fondocomun,s.fcomun,s.fcesantia FROM cappiutep.t_usuario AS u INNER JOIN cappiutep.t_persona AS s ON u.id_persona = s.id_persona WHERE id_usuario=$id");
            
 	 		while ($dato = $this->getArreglo($consulta)) $data[] = $dato;
 			return $data;

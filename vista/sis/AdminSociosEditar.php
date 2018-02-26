@@ -151,14 +151,68 @@
 		            foreach ($tagcbotp as $tagtp){echo $tagtp;}
 	            ?>
 	            <div id="divFondos" style="display:<?php if ($Soc['id_tipo_persona']=='1') echo 'none' ?>">
-		            <div id="divFCesantia" style="color:blue;">Será inscrito en el fondo de cesantía</div>
-		            <br>
+		          
 		            <div id="divFComun">
-				   		<label>¿Desea inscribirse en el banco de fondo común?</label>
-						<input type="checkbox" name="FondoComun" id="FondoComunSi" value="1" onchange="fondoComun();" <?php if($Soc['fondocomun'] == '1') echo 'checked'; ?> >
-						<input type="checkbox" name="FondoComun" id="FondoComunNo" value="0" style="display:none;" <?php if($Soc['fondocomun'] == '0') echo 'checked'; ?> >
+				   		
 
-						<div id="fondoc" style=""><br><br> Aporte <input type="text" id="fondoco" style="width: 40%;" class="form-control" name="aporte" value="<?php echo $Soc['aporte']; ?>"> </div>
+						<table class="ui celled center aligned table" style="width: 100%; margin-top: 5px;" border="0">
+					      	<tr style="background: #EEE;">
+					      		<th>Estatus</th>
+					      		<th align="center">Fondo</th>
+					      		<th>Aporte Inicial</th>
+					      	</tr>
+					      	<tr>
+					      		<td style="width: 5%; " align="center">
+					      			<?php
+					      				if($Soc['fcomun'] == 1){ echo '<img src="../../image/bien.jpg" style="width:60%;">';
+					      					$campo=' <input type="text" name="aporteco" style="background: #eee;" readonly="" value="'.$Soc['aporte_comun'].'" class="form-control">
+					      					<input type="hidden" name="fondoco" value="1">
+					      					<input type="hidden" name="nuevoco" value="0">
+					      					';
+					      				 }else{ 
+					      					echo '<input type="checkbox" name="fondoco" value="1">
+					      					<input type="hidden" name="nuevoco" value="1">
+
+					      					';
+
+					      					$campo='<input type="text" name="aporteco" value="" class="form-control">'; 
+					      				}
+					      			?>
+
+					      		</td>
+					      		<td>Fondo Comun</td>
+					      		<td><?php echo $campo; ?></td>
+					      	</tr>
+				      	<tr>
+				      		<td align="center" style="width: 5%;  ">
+				      			<?php
+					      				if($Soc['fcesantia'] == 1){
+
+					      					 echo '<img src="../../image/bien.jpg" style="width:60%;">
+
+					      					 ';
+					      					 $campo=' <input type="text" name="aportece" style="background: #eee;" readonly="" value="'.$Soc['aporte_cesantia'].'" class="form-control">
+					      					<input type="hidden" name="fondoce" value="1">
+					      					<input type="hidden" name="nuevoce" value="0">
+					      					'; 
+
+					      				}else{
+
+					      				 	echo '<input type="checkbox" name="fondoce" value="1">
+					      				 	<input type="hidden" name="nuevoce" value="1">
+					      				 	';
+
+					      					$campo='<input type="text" name="aportece" value="" class="form-control">'; 
+
+					      				  }
+					      			?>
+				      		</td>
+				      		<td>Fondo Cesantia</td>
+				      		<td> <?php echo $campo; ?></td>
+				      	</tr>
+				      </table>
+
+
 					</div>
 				</div>
 		   	</div>		    	
@@ -272,6 +326,7 @@
 		<div class="ui center aligned block inverted header">
 			
 			<input type="hidden" name="opera" id="opera" value="GUARDAR CAMBIOS">
+			<!--input type="submit" class="ui sumbit primary button" value="GUARDAR CAMBIOS" onclick="envsiar(this.value)"!-->
 			<input type="button" class="ui sumbit primary button" value="GUARDAR CAMBIOS" onclick="enviar(this.value)">
 			<input type="button" class="ui red button" value="CANCELAR" onclick="cancelar()">   
 			<input type="hidden" name="FechaIns" id="FechaIns" value="00-00-0000">

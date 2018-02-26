@@ -50,6 +50,8 @@ session_start();
               <?php
                 $_SESSION['tipou']=$socio['id_tipo_persona'];
                 $_SESSION['fnd']=$socio['fondocomun'];
+                $_SESSION['fondocos']=$socio['fcomun'];
+                $_SESSION['fondoce']=$socio['fcesantia'];
               ?>
 
               <p> Bienvenido, <?php  $_SESSION['usuarios_socio']=$socio['nombre1']." ".$socio['apellido1']; echo $socio['nombre1']." ".$socio['apellido1']; ?> </p>

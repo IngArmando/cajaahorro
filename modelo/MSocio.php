@@ -204,13 +204,13 @@ class Socio extends CModeloDatos  {
 //--------------------------------------------------------------------
 //       Registrar
 //--------------------------------------------------------------------
-    public function registrar()
+    public function registrar($fco,$fce,$aptco,$aptce)
     {
 
        $this->crearConexion();
        $this->query( "BEGIN" );
        //PASO 1 de 5 - Se registra la persona en la BD
-       $sql="INSERT INTO cappiutep.t_persona (
+       echo $sql="INSERT INTO cappiutep.t_persona (
                                               id_persona,
                                               nacionalidad,
                                               cedula,
@@ -235,7 +235,11 @@ class Socio extends CModeloDatos  {
                                               lugarnac,
                                               id_tipo_persona,
                                               fondocomun,
-                                              id_parroquia
+                                              id_parroquia,
+                                              aporte_cesantia,
+                                              aporte_comun,
+                                              fcesantia,
+                                              fcomun
                                               )
                                         VALUES
                                               (
@@ -263,8 +267,12 @@ class Socio extends CModeloDatos  {
                                                '$this->LugarNac',
                                                $this->TipoPersona,
                                                '$this->FondoComun', 
-                                               0
-                                              )";
+                                               0,
+                                               '$aptce',
+                                               '$aptco',
+                                               '$fce',
+                                               '$fco'
+                                              )"; 
         $hecho = $this->query( $sql );
         //PASO 2 de 5 -  Se registra como miembro de la caja de ahorros
         if ( $hecho ){
@@ -357,10 +365,34 @@ class Socio extends CModeloDatos  {
                                               email='$this->Email',
                                               lugarnac='$this->LugarNac',
                                               id_tipo_persona=$this->TipoPersona,
-                                              fondocomun='$this->FondoComun',
-                                              aporte='$this->aporte'
+                                              fondocomun='$this->FondoComun'
                                         WHERE
                                               id_persona=$this->IdPersona";
+       return $this->query($sql);
+  }
+
+  public function modificar2($p1,$p2,$p3,$p4)
+    {
+
+       $this->crearConexion();
+       echo $sql = "UPDATE cappiutep.t_persona SET
+                                              nombre1='$this->Nombre1',
+                                              nombre2='$this->Nombre2',
+                                              apellido1='$this->Apellido1',
+                                              apellido2='$this->Apellido2',
+                                              direccion='$this->Dir',
+                                              telf_fijo='$this->TelfFijo',
+                                              telf_movil='$this->TelfMovil',
+                                              email='$this->Email',
+                                              lugarnac='$this->LugarNac',
+                                              id_tipo_persona=$this->TipoPersona,
+                                              fondocomun='$this->FondoComun',
+                                              fcomun='".$p1."',
+                                              aporte_comun='".$p2."',
+                                              fcesantia='".$p3."',
+                                              aporte_cesantia='".$p4."'
+                                        WHERE
+                                              id_persona=$this->IdPersona"; 
        return $this->query($sql);
   }
 
@@ -601,6 +633,8 @@ class Socio extends CModeloDatos  {
                   <th >C.I.</th>
                   <th >Nombre y Apellido</th>
                   <th >Cargo</th>
+                  <th >F Comun</th>
+                  <th >F Cesantia</th>
                   <th class='collapsing'>Condición</th>
                   <th >Acciones</th>
                 </tr></thead>
@@ -637,10 +671,15 @@ class Socio extends CModeloDatos  {
 
       }   
 
+      if($row['fcomun'] == 1){ $ima="../../image/bien.jpg"; }else{ $ima="../../image/malo.png"; }
+      if($row['fcesantia'] == 1){ $imac="../../image/bien.jpg"; }else{ $imac="../../image/malo.png"; }
+
       $MarcasSelect[$pos++]="<tr>
                    <td>".$row['cedula']."</td>
                    <td>".$row['nombre1']." ".$row['apellido1']."</td>
                    <td>".$row['nombre']."</td>
+                   <td><img src='".$ima."' style='width:20%;'></td>
+                   <td><img src='".$imac."' style='width:20%;'></td>
                    <td>".$status."</td>
                    <td>".$acciones."</td>
                   </tr>";
@@ -684,7 +723,7 @@ class Socio extends CModeloDatos  {
                    <td>".number_format($row['saldo_bloq_prestamo'])."</td>
                    <td>".number_format($row['saldo_bloq_fianza'])."</td>
                    <td>".number_format($saldo_total)."</td>
-                   <td>".number_format($saldo_disp)."</td>
+                   <td>".number_format($saldo_total)."</td>
                   </tr>";
     }
     $MarcasSelect[$pos++]="</tbody></table>";

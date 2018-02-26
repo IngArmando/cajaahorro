@@ -35,15 +35,20 @@
 //--------------------------------------------------------------------
 //    Llamado de clase y creación de objeto
 //--------------------------------------------------------------------
-    include_once("../modelo/MSocio.php");
+    @include_once("../modelo/MSocio.php");
     $OSocio = new Socio();
 
     //Para enviar correos
-    include_once("../modelo/MEmail.php");
+    @include_once("../modelo/MEmail.php");
   	$mail = new SendMail();
 
-    include_once("../modelo/MBitacoraOperacion.php");
+    @include_once("../modelo/MBitacoraOperacion.php");
     $bitacora = new BitOpe;
+
+    @include_once('../modelo/MPgsql.php');
+              $dbg=new CModeloDatos;
+              $dbg1=new CModeloDatos;
+              $dbg2=new CModeloDatos;
 
 
 //--------------------------------------------------------------------
@@ -92,9 +97,57 @@ switch($operacion){
 
 					    $OSocio->setCondicion    ( 149        );
 		  			  $OSocio->setFechaIni     ( $FechaIns  );
+
+              $fco=$_POST['fondoco'];
+              $fce=$_POST['fondoce'];
+
+              $aptco=$_POST['aporteco'];
+              $aptce=$_POST['aportece'];
+
+              if($fco != 1 ){ $fco=0; }else{ $fco=1; }
+              if($fce != 1 ){ $fce=0; }else{ $fce=1; }
+              if($aptco != 0 ){ $aptco=$aptco; }else{ $aptco=0; }
+              if($aptce != 0 ){ $aptce=$aptce; }else{ $aptce=0; }
+
+              
+
             
-            		  if($OSocio->registrar())
+            		  if($OSocio->registrar($fco,$fce,$aptco,$aptce))
             		  {
+
+                      $tf="select * from cappiutep.t_persona order by id_persona desc limit 1"; 
+                      $atf=$dbg1->ejecutar($tf);
+                      $rowtf=$dbg1->getArreglo($atf);
+
+                        $saldos= $aptce + $aptco; 
+
+                               $sqlha="insert into cappiutep.t_haberes(id_persona,saldo,saldo_bloq_prestamo,saldo_bloq_fianza,fecha_cierre) values('".$rowtf['id_persona']."','".$saldos."','0','0','".date('Y-m-d')."')";
+
+                        $tt=$dbg2->ejecutar($sqlha);
+
+                        if($fce == 1){ 
+                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$rowtf['id_persona']."', '1' ,'".date(Y)."', '".date(m)."','1','".$aptce."')";
+                        $tt=$dbg2->ejecutar($sqlha);
+                      }
+
+                      if($fco == 1){ 
+                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$rowtf['id_persona']."', '2' ,'".date(Y)."', '".date(m)."','1','".$aptco."')";
+                        $tt=$dbg2->ejecutar($sqlha);
+                      }
+                     
+
+
+
+
+                      /*
+
+                      if($fce == 1){ 
+                        $sqlha="insert into cappiutep.t_haberes(id_persona,saldo,saldo_bloq_prestamo,saldo_bloq_fianza,fecha_cierre) values('".$rowtf['id_persona']."','".$aptce."','0','0','".date('Y-m-d')."')";
+
+                        $tt=$dbg2->ejecutar($sqlha);
+                      }
+*/
+                      
 
                         /*$OSocio->registrarBanco();*/
 
@@ -138,7 +191,31 @@ switch($operacion){
     case "GUARDAR CAMBIOS":
             $IdPersona = trim( $_POST['IdPersona'] );
             $OSocio->setIdPersona    ( $IdPersona );
-            $OSocio->modificar();
+
+              $fco=$_POST['fondoco'];
+              $fce=$_POST['fondoce'];
+
+              $aptco=$_POST['aporteco'];
+              $aptce=$_POST['aportece'];
+
+              if($fco != 1 ){ $fco=0; }else{ $fco=1; }
+              if($fce != 1 ){ $fce=0; }else{ $fce=1; }
+              if($aptco != 0 ){ $aptco=$aptco; }else{ $aptco=0; }
+              if($aptce != 0 ){ $aptce=$aptce; }else{ $aptce=0; }
+
+            if($OSocio->modificar2($fco,$aptco,$fce,$aptce)){
+
+               if($_POST['nuevoco'] == 1){ 
+                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$IdPersona."', '2' ,'".date(Y)."', '".date(m)."','1','".$aptco."')";
+                        $tt=$dbg2->ejecutar($sqlha);
+                      }
+
+                      if($_POST['nuevoce'] == 1){ 
+                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$IdPersona."', '1' ,'".date(Y)."', '".date(m)."','1','".$aptce."')";
+                        $tt=$dbg2->ejecutar($sqlha);
+                      }
+            }
+
             $bitacora->registrar($_SESSION["idusuario"],"Socio","Guardar","Socio Modificado con Exito");
             break;
 

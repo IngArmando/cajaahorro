@@ -150,9 +150,28 @@
 		   	<div class="ui required field">
 		   		<label>Tipo de Inscripción</label>
 		   		<?php
-		            $tagcbotp=$combo->gen_combo("SELECT * FROM cappiutep.t_tipo_persona WHERE estatus='1'", "id_tipo_persona","nombre", isset($_GET[''])?$_GET['']:'','TipoPersona',' class="ui compact dropdown" onchange="TipoPers(this.value);"');
+		            $tagcbotp=$combo->gen_combo("SELECT * FROM cappiutep.t_tipo_persona WHERE estatus='1'", "id_tipo_persona","nombre", isset($_GET[''])?$_GET['']:'','TipoPersona',' class="ui compact dropdown" onchange="TipoPers2(this.value);"');
 		            foreach ($tagcbotp as $tagtp){echo $tagtp;}
 	            ?>
+	            <br>
+
+	            <table class="ui celled center aligned table" style="width: 100%; margin-top: 5px;" border="0">
+			      	<tr style="background: #EEE;">
+			      		<th>Accion</th>
+			      		<th align="center">Fondo</th>
+			      		<th>Aporte Inicial</th>
+			      	</tr>
+			      	<tr>
+			      		<td style="width: 5%; background: #EEE; " align="center"><input type="checkbox" name="fondoco" value="1"></td>
+			      		<td>Fondo Comun</td>
+			      		<td> <input type="text" name="aporteco" style="width: 25%;" class="form-control"></td>
+			      	</tr>
+		      	<tr>
+		      		<td align="center" style="width: 5%; background: #EEE; "><input type="checkbox" name="fondoce" value="1"></td>
+		      		<td>Fondo Cesantia</td>
+		      		<td> <input type="text" name="aportece" style="width: 25%;" class="form-control"></td>
+		      	</tr>
+		      </table>
 	            <div id="divFondos" style="display:none">
 		            <div id="divFCesantia" style="color:blue;">Será inscrito en el fondo de cesantía</div>
 		            <br>
@@ -162,9 +181,10 @@
 						<input type="checkbox" name="FondoComun" id="FondoComunNo" value="0" checked style="display:none;">
 					</div>
 				</div>
-		   	</div>		    	
+		   	</div>
 		</div>
 
+		
 
 
 		<!-- CAMPOS INVISIBLES (NO SON NECESARIOS) -->
@@ -291,6 +311,7 @@
 		<div class="ui error message"></div> 
 		<div class="ui center aligned block inverted header">
 			<input type="hidden" name="opera" id="opera" value="Registrar">
+			<!--input type="submit" class="ui sumbit primary button" value="Registrar" onclick="enviar(this.value)"!-->
 			<input type="button" class="ui sumbit primary button" value="Registrar" onclick="enviar(this.value)">
 			<input type="button" class="ui red button" value="Cancelar" onclick="cancelar()">   
 		</div>

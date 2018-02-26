@@ -25,6 +25,11 @@
           $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' ";
           $sqlf="select id_beneficio,sueldo_base,valorp  from cappiutep.t_beneficio where id_beneficio='".$_GET['cod']."' ";
 
+          $sqlfj="SELECT *
+          FROM cappiutep.t_beneficio AS b
+          INNER JOIN cappiutep.t_persona AS tp ON tp.id_persona=tpc.id_persona
+          WHERE b.id_beneficio=".$_GET['cod']." and ";
+
           $df=$dbf->ejecutar($sqlf); $rowf=$dbf->getArreglo($df);
 
           /*$sql="SELECT *
@@ -34,16 +39,22 @@
           INNER JOIN cappiutep.t_detalle_amortizacion AS amt ON amt.id_beneficio_solicitud=b.id_beneficio_solicitud
           WHERE b.id_beneficio=".$_GET['cod']." and amt.anho='".$_GET['ano']."' and amt.mes='".$_GET['me']."'";
           */
+          
+
+            
           if($_GET['cod'] =='T'){
-             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' or fcomun='1' order by apellido1 asc";
           }elseif($_GET['cod'] == 1){
-             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' order by apellido1 asc";
 
           }else{
-             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' AND fondocomun='1' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' AND fcomun='1' order by apellido1 asc";
           }
 
+
           $as=$db->ejecutar($sql);
+
+
 
           while ($row=$db->getArreglo($as)) {
             # code...

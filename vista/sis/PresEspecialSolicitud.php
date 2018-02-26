@@ -73,7 +73,7 @@
             <i class="money icon"></i>
             Préstamos
         </h2>
-        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal.php">
+        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal2.php">
             <h3 class="ui center aligned header"> Solicitud de Préstamo de Cesantia  </h3> 
             <!--<p align="justify">
                El préstamo debe ser respaldado por sus haberes disponibles,

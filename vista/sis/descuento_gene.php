@@ -197,7 +197,7 @@ session_start();
                       $difbe= $rowde['pago'] - $rowde['descontado'];
                       $genebe='';
 
-                      if($rowde['descontado'] == $rowd['pago']){
+                      if($rowde['descontado'] == $rowde['pago']){
                         $listobe='readonly';
                       }else{
                           $listobe='';

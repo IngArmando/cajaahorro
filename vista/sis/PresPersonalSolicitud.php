@@ -245,8 +245,6 @@
               
             </div>
 
-            <button>enviar</button>
-
             <div class="ui message">
                 <p align="justify">
                   En caso de que la presente solicitud fuese resuesta favorable,
@@ -275,7 +273,7 @@
                 <input type="hidden" name="montoMax" id="montoMax" value="<?php if(isset($monto))     echo $monto; ?>">
                 <!--   Fin de Valores para validaciones -->
                 <?php 
-                    if ( $dia_max_prestamo >= date('d') )
+                    if ( $dia_max_prestamo < date('d') )
                         echo '<input type="button" class="ui primary button" value="Solicitar" name="btnSolicitar" onclick="enviar(this.value)">';
                 ?>
                 <!--<input type="submit" class="ui primary button" value="Solicitar" name="btnSolicitar">-->

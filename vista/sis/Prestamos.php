@@ -87,11 +87,11 @@
             <?php
                 if ( $Soc['id_tipo_persona'] == '2' )
                 {
-                  if ( $dia_max_prestamo < date('d') )
+                  if ( $dia_max_prestamo < date(d) )
                   {
-                  	echo "<div class='ui info message'> <i class='fitted info circle icon'></i> <b>NOTA:</b> Solamente puedes visualizar en los préstamos las tablas de amortización como referencia para solicitar un préstamo, pero debido a que las fechas de los prestamos es hasta los días $dia_max_prestamo de cada mes, no puedes generar ningún prestamo. <br><br></div>";
+                  	echo "<div class='ui info message'> <i class='fitted info circle icon'></i> <b>NOTA:</b> Solamente puedes visualizar en los préstamos las tablas de amortización como referencia para solicitar un préstamo, pero debido a que las fechas de los prestamos es hasta los días $dia_max_prestamo de cada mes, no puedes generar ningún prestamo. ".date('d')."<br><br></div>";
                   }
-                    echo $OBenef->genItem(1,$Ant['antiguedad'],$Soc['tipo_docente'],'PresEspecialSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
+                   // echo $OBenef->genItem(1,$Ant['antiguedad'],$Soc['tipo_docente'],'PresEspecialSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
                     /*if($Hab["saldo_bloq_prestamo"]>0 || $Hab["saldo_bloq_fianza"]>0){
                         echo '
                             <div class="ui  info message">
@@ -99,9 +99,17 @@
                                 No puede hacer un prestamo personal si tiene saldo bloqueado
                             </div>';
                     }else{*/
-                    if ( $Soc['fondocomun'] == '1' )
+                    if ( $Soc['fcomun'] == '1' )
                     {
                     echo $OBenef->genItem(2,$Ant['antiguedad'],$Soc['tipo_docente'],'PresPersonalSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
+                      //}                
+                      //echo $OBenef->genItem(3,$Ant['antiguedad'],$Soc['tipo_docente'],'PresReparacionVehiSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
+                      //echo $OBenef->genItem(6,$Ant['antiguedad'],$Soc['tipo_docente'],'PresHipotecSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)    
+                    }
+
+                    if ( $Soc['fcesantia'] == '1' )
+                    {
+                    echo $OBenef->genItem(1,$Ant['antiguedad'],$Soc['tipo_docente'],'PresEspecialSolicitud.php');// (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
                       //}                
                       //echo $OBenef->genItem(3,$Ant['antiguedad'],$Soc['tipo_docente'],'PresReparacionVehiSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)
                       //echo $OBenef->genItem(6,$Ant['antiguedad'],$Soc['tipo_docente'],'PresHipotecSolicitud.php'); // (ID del beneficio, antiguedad, tipo de docente, URL de form de solicitud)    

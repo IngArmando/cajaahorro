@@ -93,12 +93,41 @@
             <table class="ui blue table">
               <thead>
                 <tr>
-                  <th class="left aligned collapsing">Haberes</th>
-                  <th class="left aligned collapsing">Monto</th>
+                  <th class="left aligned collapsing">Aportes</th>
+                  <th class="left aligned collapsing">Saldo</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <th style="width: 60%;">Fondo Comun</th>
+                  <th>
+                      <?php
+                          @include_once('../../modelo/MPgsql.php');
+                          $dbt=new CModeloDatos;
+                          $dbf=new CModeloDatos;
+
+                          $sqlh="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
+                          $df=$dbf->ejecutar($sqlh); $rowf=$dbf->getArreglo($df);
+                    
+                      echo '$ '.number_format($rowf['aportes']); ?>
+                      
+                  </th>
+                </tr>
+
+                <tr>
+                  <th>Fondo Cesantia</th>
+                  <th><?php
+                         
+
+                          $sqly="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='1' ";
+                          $dft=$dbt->ejecutar($sqly); $rowft=$dbt->getArreglo($dft);
+                    
+                      echo '$ '.number_format($rowft['aportes']); ?>
+                   </th>
+
+                </tr>
+
+                <!--tr>
                   <td>Saldo </td>
                   <td>$ <?php echo number_format($Hab['saldo']);  ?></td>
                 </tr>
@@ -112,7 +141,7 @@
                   <th>Total Disponible <i class="ui fitted circle help icon" data-title="Ayuda" data-content="El saldo disponible representa el monto de sus haberes que puede usar como respaldo para solicitudes de préstamos y financiamientos."></i></th>
                   <th>$ <?php echo number_format( ($Hab['saldo']-$Hab['saldo_bloq_prestamo']));  ?></th>
                 </tr>
-              </tfoot>
+              </tfoot!-->
             </table>
 
           </div>

@@ -83,12 +83,12 @@ session_start();
             
              <td>
                 <b> <center> <?php
-                  if($_SESSION['tipou'] == 2 AND $_SESSION['fnd'] == 1){
+                  if($_SESSION['tipou'] == 2 AND $_SESSION['fondocos'] == 1){
                     echo 'FONDO COMUN';
 
                     $yu=2;
                   }else{
-                    echo 'FONDO DE CESANTIA';
+                    echo 'FONDO DE CESANTIA'.$_SESSION['fondocos'].'**';
                     $yu=1;
                     
 
