@@ -73,7 +73,7 @@
             Préstamos
         </h2>
         <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal.php">
-            <h3 class="ui center aligned header"> Solicitud de Préstamo de Fondo Común </h3> 
+            <h3 class="ui center aligned header"> Solicitud de Préstamo de Fondo Común**** <?php echo $Soc["id_persona"]; ?>  <h3> 
             <!--<p align="justify">
                El préstamo debe ser respaldado por sus haberes disponibles,
                para solicitar un monto mayor debe indicar <?php echo number_format($fiadores, 0, ',', '.') ?>
@@ -256,7 +256,7 @@
                    Así mismo, autorizo a CAPPIUTEP para que realice el descuento
                    de mi sueldo mensual o por giros especiales, los montos correspondientes
                    a la cancelación del crédito recibido, de acuerdo al cronograma de pago
-                   establecido y aceptado.
+                   establecido y aceptado.  
                 </p>
                 <div class="ui center aligned basic segment">
                     <div class="field">

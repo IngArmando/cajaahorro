@@ -125,7 +125,7 @@ class Beneficio extends CModeloDatos {
                 $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas) VALUES( (SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',1,'$this->interes' )";
             break;
             case 2: //prestamo personal
-                echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
+                echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT pc.id_persona FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
             break;
             case 3: //financimiaento
                 $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,observacion) VALUES( (SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->observacion')";
@@ -170,7 +170,7 @@ class Beneficio extends CModeloDatos {
         $consulta = $this->consulta("SELECT bs.*,b.nombre as tipo, concat(p.nombre1,' ',p.apellido1) as solicitante,p.id_persona
             FROM cappiutep.t_beneficio_solicitud as bs 
             inner join cappiutep.t_beneficio as b on b.id_beneficio = bs.id_beneficio
-            inner join cappiutep.t_persona_caja as pc on bs.id_solicitante = pc.id_persona_caja
+            inner join cappiutep.t_persona_caja as pc on   pc.id_persona = bs.id_solicitante
             inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona");
         while($data = $this->getArreglo($consulta)) $datos[] = $data;
         return $datos;
@@ -180,7 +180,7 @@ class Beneficio extends CModeloDatos {
         $consulta = $this->consulta("SELECT bs.*,b.nombre as tipo, per.*, pc.fecha_ini as fechaafi, progra.nombre_largo as programa
         FROM cappiutep.t_beneficio_solicitud as bs 
         inner join cappiutep.t_beneficio as b on b.id_beneficio = bs.id_beneficio 
-        inner join cappiutep.t_persona_caja as pc on pc.id_persona_caja = bs.id_solicitante
+        inner join cappiutep.t_persona_caja as pc on pc.id_persona = bs.id_solicitante
         inner join cappiutep.t_persona as per on per.id_persona = pc.id_persona
         left join cappiutep.t_lista_valor as progra on progra.id_lista_valor = bs.id_programa
         where bs.id_beneficio_solicitud=$id");

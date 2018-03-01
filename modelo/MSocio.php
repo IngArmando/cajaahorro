@@ -569,7 +569,7 @@ class Socio extends CModeloDatos  {
 //--------------------------------------------------------------------
     public function getIdPerCaja()  
     {
-        $sql="SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja AS pc WHERE pc.id_persona = '$this->IdPersona'";
+       $sql="SELECT pc.id_persona FROM cappiutep.t_persona_caja AS pc WHERE pc.id_persona = '$this->IdPersona'";
         return $this->consulta( $sql );
 
     }

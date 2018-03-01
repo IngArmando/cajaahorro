@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     include_once("../../modelo/MSocio.php");
     include_once("../../modelo/MBeneficios.php");
     include_once("../../modelo/MConfiguracion.php");
@@ -32,8 +31,10 @@
         //isset($Hab['saldo_bloq_fianza']) ? :$Hab['saldo_bloq_fianza']=0;
         isset($Hab['fecha_cierre']) ? :$Hab['fecha_cierre']=NULL;
 
-        $solicitudes = $OBeneficio->ListarSolicitudesSocio($Caja['id_persona_caja']);
+        $solicitudes = $OBeneficio->ListarSolicitudesSocio($Caja['id_persona']);
     }
+
+    $_SESSION["personaje"]= $Soc["id_persona"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -190,7 +191,7 @@
                                           $estado='Esperando aprobación';
                                           break;
                                         case '3':
-                                          $estado='Aprobado';
+                                          $estado='Aprobado / Liquidando';
                                           break;
                                         case '4':
                                           $estado='Liquidado';
