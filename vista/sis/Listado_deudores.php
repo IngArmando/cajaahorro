@@ -1,9 +1,34 @@
 <?php
 session_start();
+
+    if(!isset($_SESSION["userActivo"])){
+        header("location: ../pub/inise.php");
+    }
+
     require_once("../../controlador/CRoles.php");
 
     include_once("../../modelo/MCombo.php");
     $combo = new Combo();
+
+     include_once("../../modelo/MSocio.php");
+    $OSocio = new Socio();
+
+
+    if (isset($_SESSION["userActivo"]))
+    {
+        $OSocio -> setCedula($_SESSION["userActivo"]);
+        $registro=$OSocio -> busCedula();
+        while ( $fila = $OSocio->setArreglo( $registro ))
+          $datos[] = $fila;
+      foreach ($datos as $Soc) { $Soc; }
+
+    }
+
+             
+    if($Soc['fcomun'] == 1){ $conectado =2;  $sql="SELECT * from cappiutep.t_persona where fcomun='1' order by apellido1 asc"; }
+    if($Soc['fcesantia'] == 1){ $conectado =1;  $sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";}
+
+
 ?>
 <html lang="es">
 <head>
@@ -76,7 +101,7 @@ session_start();
     <div class="" id="muestra_tabla">
 
       <table class="table table-bordered">
-        <tr style="background: #EEE;"><th><center>LISTADO DE DEUDORES</center></th></tr>
+        <tr style="background: #EEE;"><th><center>LISTADO DE DEUDORES </center></th></tr>
       </table>
       
       <script type="text/javascript">
@@ -87,8 +112,8 @@ session_start();
             <tr style="background: #EEE;">
               <td width="8%">N-º</td>
               <td width="10%">Dni</td>
-              <td width="25%">Nombres</td>
-              <td width="25%">Apellidos</td>
+              <td width="20%">Nombres</td>
+              <td width="20%">Apellidos</td>
               <td width="10%"></td>
 
             </tr>
@@ -102,7 +127,13 @@ session_start();
 
           $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' ";
 
-          /*$sql="SELECT *
+           
+
+          /*INNER JOIN cappiutep.t_detalle_amortizacion AS amt ON amt.id_beneficio_solicitud=b.id_beneficio_solicitud
+          WHERE b.id_beneficio=".$conectado." AND amt.anho='".date(Y)."' and amt.mes='".number_format(date(m))."'";
+         
+
+           /*$sql="SELECT *
           FROM cappiutep.t_beneficio_solicitud AS b
           INNER JOIN cappiutep.t_persona_caja AS tpc ON tpc.id_persona=b.id_solicitante
           INNER JOIN cappiutep.t_persona AS tp ON tp.id_persona=tpc.id_persona
@@ -110,7 +141,8 @@ session_start();
           WHERE b.id_beneficio=".$_GET['cod']." and amt.anho='".$_GET['ano']."' and amt.mes='".$_GET['me']."'";
           */
           
-             $sql="SELECT * from cappiutep.t_persona order by apellido1 asc";
+           //  $sql="SELECT * from cappiutep.t_persona order by apellido1 asc";
+
           
           $as=$db->ejecutar($sql);
 
@@ -124,11 +156,12 @@ session_start();
                 
                   <td width="8%">'.$o.' </td>
                   <td width="10%">'.$row['cedula'].'</td>
-                  <td width="35%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
-                  <td width="35%">'.$row['apellido1'].' '.$row['apellido2'].'</td>
-                  <td width="5%"><form method="post" action="descuento_gene.php"> 
+                  <td width="20%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
+                  <td width="20%">'.$row['apellido1'].' '.$row['apellido2'].'</td>
+                 
+                  <td width="5%"><form method="post" action="vista_prestamo.php"> 
 
-                      <input type="hidden" name="dni" value="'.$row['id_persona'].'">
+                      <input type="text" name="dni" value="'.$row['id_persona'].'">
                       <input type="hidden" name="ano" value="'.$_GET['ano'].'">
                       <input type="hidden" name="mes" value="'.$_GET['me'].'">
                       <button class="btn btn-success" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button></form></td>
