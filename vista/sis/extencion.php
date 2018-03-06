@@ -28,7 +28,7 @@
     $fiadores   = $condiciones["max_fiadores"];
 
     if (isset($_SESSION["userActivo"])){
-        $OSocio -> setCedula($_SESSION["userActivo"]);
+        $OSocio -> setCedula($_POST['cedula']);
         $registro=$OSocio -> busCedula();
         while ( $fila = $OSocio->setArreglo( $registro )) $datos[] = $fila;
         foreach ($datos as $Soc) { $Soc; }
@@ -72,8 +72,8 @@
             <i class="money icon"></i>
             Extencion De Préstamos
         </h2>
-        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal.php">
-            <h3 class="ui center aligned header"> Solicitud de Extencion de Préstamo  <h3> 
+        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/cextencion.php">
+            <h3 class="ui center aligned header"> Solicitud de Extencion de Préstamo <br>  <?php echo $Soc['apellido1'].' '.$Soc['nombre1']; ?><h3> 
             <!--<p align="justify">
                El préstamo debe ser respaldado por sus haberes disponibles,
                para solicitar un monto mayor debe indicar <?php echo number_format($fiadores, 0, ',', '.') ?>
@@ -91,11 +91,39 @@
             
             <div class="three fields">
 
+                <?php
+                        @include_once('../../modelo/MPgsql.php');
+                             $db=new CModeloDatos;
+                             $sql="SELECT *  FROM cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$_POST['soli']."' ";
+                             $as=$db->ejecutar($sql);
+
+                             while ($row=$db->getArreglo($as)) {
+                                $descontado+=$row['descontado'];
+                                $todo += $row['pago'];
+                             }
+
+                             $monto_adeudado=$todo-$descontado;
+                ?>
+
               <div class="required field">
+                <label>Monto Adeudado</label>
+                <div class="ui left labeled input">
+                  <div class="ui label"><a onclick="retorname(<?php echo $monto_adeudado?>)"><?= $moneda ?></a></div>
+                  <input type="text" name="" id="adeudado" onkeypress="return soloNumeros(event)" onblur="pon_monto(this.value)" maxlength="10" value="<?php echo $monto_adeudado?>">
+
+                  <input type="hidden" name="tipo" value="<?php echo $_POST['tipo'];?>">
+                  <input type="hidden" name="dni" value="<?php echo $_POST['dni'];?>">
+                  <input type="hidden" name="soli" value="<?php echo $_POST['soli'];?>">
+
+                </div>
+              </div>     
+
+               <div class="required field">
                 <label>Monto a solicitar</label>
                 <div class="ui left labeled input">
                   <div class="ui label"><?= $moneda ?></div>
-                  <input type="text" name="Monto" id="Monto" onkeypress="return soloNumeros(event)" maxlength="10">
+                  <input type="text" name="Monto" id="Monto" style="background:#EEE;" readonly onkeypress="return soloNumeros(event)" maxlength="10" value="<?php echo $monto_adeudado?>">
+
                 </div>
               </div>       
 
@@ -105,7 +133,7 @@
                 //$tagcbotp=$combo->gen_combo("SELECT p.*, CONCAT (p.nombre_plazo,' - ', p.min_meses,' cuotas') as Desc FROM cappiutep.t_beneficio_plazo as p WHERE id_beneficio=5 AND estatus='1' ", "min_meses","desc", isset($_GET[''])?$_GET['']:'','Plazo',' class="ui compact dropdown"');
                 //foreach ($tagcbotp as $tagtp){echo $tagtp;}
                 ?>
-                <select name="Plazo" id="Plazo" class="ui compact dropdown">
+                <select name="Plazo" id="Plazo" class="ui compact dropdown" >
                     <?php for($pl=1;$pl<=40;$pl++): ?>
                         <option value="<?=$pl?>"><?=$pl?></option>
                     <?php endfor; ?>
@@ -277,7 +305,7 @@
                         echo '<input type="button" class="ui primary button" value="Solicitar" name="btnSolicitar" onclick="enviar(this.value)">';
                 ?>
                 <!--<input type="submit" class="ui primary button" value="Solicitar" name="btnSolicitar">-->
-                <a class="ui red button" href="Prestamos.php">Cancelar</a>   
+                <a class="ui red button" href="Listado_deudores.php">Cancelar</a>   
             </div>
         </form>
     </div>
@@ -496,10 +524,6 @@
               {
                 type   : 'empty',
                 prompt : 'No puede estar en blanco.'
-              },
-              {
-                type   : 'integer',
-                prompt : 'Sólo puede contener números.'
               }
               ]
             },
@@ -595,12 +619,12 @@
       if ( $('form').form('is valid') ){
         switch(operacion){
             case "Solicitar":
-                var redireccion="Prestamos.php";
+                var redireccion="Listado_deudores.php";
             break;
             case "Aprobar":
             case "Rechazar":
             case "Registrar":
-                var redireccion="GestionSolicitudes.php";
+                var redireccion="Listado_deudores.php";
             break;
         }
 
@@ -642,6 +666,21 @@
               },1500);
             });
         }
+    }
+
+    function pon_monto(m){
+        mont=document.getElementById('Monto');
+        mont.value=m;
+        amortizacionNueva();
+    }
+
+    function retorname(ad){
+        ade=document.getElementById('adeudado');
+        ade.value=ad;
+        pon_monto(ad);
+    }
+    function amortizacionn(){
+       
     }
 </script>
 

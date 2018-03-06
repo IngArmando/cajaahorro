@@ -69,7 +69,7 @@ session_start();
   <div class="panel-heading">AJUSTE DE PRESTAMOS</div>
   <div class="panel-body">
         
-    <table class="table table-bordered">
+    <!--table class="table table-bordered">
 
         <tr>
           <th width="20%">Año</th>
@@ -96,7 +96,7 @@ session_start();
             ?>   
             </td>
         </tr>
-    </table>
+    </table!-->
 
     <div class="" id="muestra_tabla">
 
@@ -110,7 +110,7 @@ session_start();
  <table class="table table-bordered" id="data_table">
   <thead>
             <tr style="background: #EEE;">
-              <td width="8%">N-º</td>
+              <td width="5%">N-º</td>
               <td width="10%">Dni</td>
               <td width="20%">Nombres</td>
               <td width="20%">Apellidos</td>
@@ -154,14 +154,14 @@ session_start();
             echo '
               <tr>
                 
-                  <td width="8%">'.$o.' </td>
+                  <td width="5%">'.$o.' </td>
                   <td width="10%">'.$row['cedula'].'</td>
                   <td width="20%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
                   <td width="20%">'.$row['apellido1'].' '.$row['apellido2'].'</td>
                  
                   <td width="5%"><form method="post" action="vista_prestamo.php"> 
 
-                      <input type="text" name="dni" value="'.$row['id_persona'].'">
+                      <input type="hidden" name="dni" value="'.$row['id_persona'].'">
                       <input type="hidden" name="ano" value="'.$_GET['ano'].'">
                       <input type="hidden" name="mes" value="'.$_GET['me'].'">
                       <button class="btn btn-success" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button></form></td>

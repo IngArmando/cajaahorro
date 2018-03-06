@@ -140,6 +140,12 @@ class Beneficio extends CModeloDatos {
         return $this->ejecutar2($sql);
     }
 
+public function guardarExtencion($tipo,$dni){
+
+          $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas) VALUES('".$dni."','".$tipo."',CURRENT_DATE,'$this->monto','$this->cuotas','$this->interes' )";
+            
+        return $this->ejecutar2($sql);
+    }
     public function registrar_detalle($nro,$mes,$anho,$capital,$amortizacion,$pago,$saldo,$id_beneficio_solicitud) {
             $sql = "INSERT INTO cappiutep.t_detalle_amortizacion(
             nro,
@@ -260,6 +266,13 @@ class Beneficio extends CModeloDatos {
         $sql="UPDATE cappiutep.t_beneficio 
         SET estatus = '0'
         WHERE id_beneficio= $this->IdBeneficio";
+        return $this->consulta( $sql );
+    }
+
+    public function desactivar_prestamo($soli) {
+        $sql="UPDATE cappiutep.t_beneficio_solicitud 
+        SET estatus = '5'
+        WHERE id_beneficio_solicitud= $soli";
         return $this->consulta( $sql );
     }
 

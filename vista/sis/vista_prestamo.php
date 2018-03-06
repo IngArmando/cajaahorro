@@ -74,8 +74,7 @@ session_start();
          <th>Fecha</th>
          <th>Cuotas</th>
          <th>Monto</th>
-         <th>Cuotas Atrasadas</th>
-         <th>Deuda</th>
+         <th><center>Cuotas Atrasadas</center></th>
          
          <th style="width:5%;"></th>
        </tr>
@@ -85,7 +84,12 @@ session_start();
          $as=$db->ejecutar($sql);
 
           while ($row=$db->getArreglo($as)) {
-echo '<form method="post" action="extencion.php">';
+echo '<form method="post" action="extencion.php">
+      
+      <input type="hidden" name="dni" value="'.$_POST['dni'].'">
+      <input type="hidden" name="cedula" value="'.$rowp['cedula'].'">
+      <input type="hidden" name="tipo" value="'.$row['id_beneficio'].'">
+';
             $t++;
 
          $db2=new CModeloDatos;
@@ -94,6 +98,7 @@ echo '<form method="post" action="extencion.php">';
          $asa=$db2->ejecutar($sqlc);
 
          $m.='
+          <input type="hidden" name="soli" value="'.$row['id_beneficio_solicitud'].'">
                 <table class="table table-bordered" style="font-size:12px;">
                   <tr style="background:#EEE;">
                     <th>Año</th>
@@ -111,6 +116,7 @@ echo '<form method="post" action="extencion.php">';
               $restantes++;
                $m.='
               <tr>
+                  
               
                 <td>'.$rowc['anho'].'</td>
                 <td>'.meses($rowc['mes']).'</td>
@@ -141,7 +147,6 @@ echo '<form method="post" action="extencion.php">';
                 <td>'.$row['cuotas'].'</td>
                 <td>'.$row['monto'].'</td>
                 <td>'.$m.'</td>
-                <td>'.$deuda.'</td>
                 <td><button class="btn btn-success btn-sm" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button></td>
               </tr>
                 </form>
