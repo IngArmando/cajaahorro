@@ -74,15 +74,65 @@ session_start();
          <th>Fecha</th>
          <th>Cuotas</th>
          <th>Monto</th>
+         <th>Cuotas Atrasadas</th>
+         <th>Deuda</th>
+         
+         <th style="width:5%;"></th>
        </tr>
        <?php
          $db=new CModeloDatos;
-         $sql="SELECT *  FROM cappiutep.t_beneficio_solicitud where id_solicitante='".$_POST['dni']."' ";
+         $sql="SELECT *  FROM cappiutep.t_beneficio_solicitud where id_solicitante='".$_POST['dni']."' AND estatus='4' ";
          $as=$db->ejecutar($sql);
 
           while ($row=$db->getArreglo($as)) {
-
+echo '<form method="post" action="extencion.php">';
             $t++;
+
+         $db2=new CModeloDatos;
+
+          $sqlc="SELECT * FROM cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND anho <= '".date(Y)."' AND mes <= '".number_format(date(m))."' order by mes asc";
+         $asa=$db2->ejecutar($sqlc);
+
+         $m.='
+                <table class="table table-bordered" style="font-size:12px;">
+                  <tr style="background:#EEE;">
+                    <th>Año</th>
+                    <th>Mes</th>
+                    <th>Mensualidad</th>
+                    <th>Descontado</th>
+                  </tr>
+                ';
+          while ($rowc=$db2->getArreglo($asa)) {
+            //if($rowc['mes'] <= date(m)){
+
+            //$ma.=' '.$rowc['mes'].' | '.$rowc['capital'].' | '.$rowc['pago'].'* | '.$rowc['descontado'].'*<br>';
+            if($rowc['descontado'] != $rowc['pago']){ 
+
+              $restantes++;
+               $m.='
+              <tr>
+              
+                <td>'.$rowc['anho'].'</td>
+                <td>'.meses($rowc['mes']).'</td>
+                <td>'.$rowc['pago'].'</td>
+                <td>'.number_format($rowc['descontado']).'</td>
+              
+              </tr>
+              '; 
+
+            }else{
+
+            }
+             //}else{
+
+             //}
+
+           
+
+
+
+          }
+          $m.='</table>';
 
             echo '
               <tr>
@@ -90,7 +140,12 @@ session_start();
                 <td>'.$row['fecha'].'</td>
                 <td>'.$row['cuotas'].'</td>
                 <td>'.$row['monto'].'</td>
-              </tr>';
+                <td>'.$m.'</td>
+                <td>'.$deuda.'</td>
+                <td><button class="btn btn-success btn-sm" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button></td>
+              </tr>
+                </form>
+              ';
           }
 
 
