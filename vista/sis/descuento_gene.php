@@ -95,7 +95,7 @@ session_start();
                     $app++;
                     if($rowap['tipo'] == 2){ $tip="Fondo Comun"; }else{ $tip="Cesantia"; }
 
-                    if($rowap['aportado'] == ''){
+                    if($rowap['aportado'] == '' || number_format($rowap['aportado']) == 0){
                       $descontado=0;
                       $lit='';
                     }else{

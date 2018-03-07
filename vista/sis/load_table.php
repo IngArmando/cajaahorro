@@ -45,7 +45,7 @@
               <tr>
               	
                   <td width="8%">'.$o.' </td>
-                  <td width="10%">'.$row['cedula'].'***</td>
+                  <td width="10%">'.$row['cedula'].'</td>
                   <td width="35%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
                   <td width="35%">'.$row['apellido1'].' '.$row['apellido2'].'</td>
                   <td width="5%"><form method="post" action="descuento_gene.php"> 
