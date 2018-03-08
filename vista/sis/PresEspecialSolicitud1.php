@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     if(!isset($_SESSION["userActivo"])){
         header("location: ../pub/Acceso.php");
@@ -16,12 +17,12 @@
 
     include_once("../../modelo/MBeneficios.php");
     $OBenef = new Beneficio();
-    $tasaInteres = $OBenef->get_tasa_interes(2);
+    $tasaInteres = $OBenef->get_tasa_interes(1);
 
     include_once("../../modelo/MSocio.php");
     $OSocio = new Socio();
     $tipoDocente = $OSocio->getTipoDocente($_SESSION["userActivo"]);
-    $condiciones = $OBenef->getCondiciones(2,$tipoDocente);
+    $condiciones = $OBenef->getCondiciones(1,$tipoDocente);
 
     $montoMin   = $condiciones["monto_min"];
     $haberesReq = $condiciones["haberes_req"];
@@ -38,9 +39,9 @@
 
     $montoMax=$haberesDispo;// El monto max. son los haberes disponibles
 
-    include_once("../../modelo/MConfiguracion.php");
+    @include_once("../../modelo/MConfiguracion.php");
     $OConfiguracion = new Configuracion();
-    $Datos = $OConfiguracion->consultarConf();
+    $Datos = $OConfiguracion->consultarConfi();
     $dia_max_prestamo = $Datos['dia_max_prestamo'];
 ?>
 <!DOCTYPE html>
@@ -72,8 +73,8 @@
             <i class="money icon"></i>
             Préstamos
         </h2>
-        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonalc.php">
-            <h3 class="ui center aligned header"> Solicitud de Préstamo de Fondo Cesantia  <h3> 
+        <form class="ui large form" method="POST" name="formulario" id="formulario" autocomplete="off" action="../../controlador/CSolicitudPersonal2.php">
+            <h3 class="ui center aligned header"> Solicitud de Préstamo de Cesantia  </h3> 
             <!--<p align="justify">
                El préstamo debe ser respaldado por sus haberes disponibles,
                para solicitar un monto mayor debe indicar <?php echo number_format($fiadores, 0, ',', '.') ?>
@@ -215,31 +216,31 @@
                 <div class="ui warning message visible">
                     <i class="fitted info circle icon"></i> El monto a solicitar supera su disponibilidad, por favor indique sus fiadores o solicite un monto menor. 
                 </div>
-  			    <table class="ui small center aligned table">
+            <table class="ui small center aligned table">
                     <thead>
                         <th class="two wide">N°</th>
                         <th class="three wide">Cédula</th>
                         <th>Nombre y Apellido</th>
                     </thead>
                     <tbody>
-  	                <?php if($fiadores): ?>
-  	                    <?php for($i=1;$fiadores>=$i;$i++){ ?>
-  	                        <tr>
-  	                        	<td><?php echo $i;  ?></td>
-  	                            <td>
-  	                            	<div class="ui field">
-  	                            		<input type="text" name="txtCiF[]" onblur="buscarSocio(this,'<?= $i ?>')"  id="cedula-<?= $i ?>">
-  	                            	</div>
-  	                            </td>
-  	                            <td>
-  									<div class="ui transparent input">
-  										<input type="text" name="txtNombreF[]" id="nombre-<?= $i ?>">
+                    <?php if($fiadores): ?>
+                        <?php for($i=1;$fiadores>=$i;$i++){ ?>
+                            <tr>
+                              <td><?php echo $i;  ?></td>
+                                <td>
+                                  <div class="ui field">
+                                    <input type="text" name="txtCiF[]" onblur="buscarSocio(this,'<?= $i ?>')"  id="cedula-<?= $i ?>">
+                                  </div>
+                                </td>
+                                <td>
+                    <div class="ui transparent input">
+                      <input type="text" name="txtNombreF[]" id="nombre-<?= $i ?>">
                                         <input type="text" name="txtTipoF[]" id="apellido-<?= $i ?>">
-  									</div>
-  	                            </td>
-  	                        </tr>
-  	                    <?php }; ?>
-  	                <?php endif; ?>
+                    </div>
+                                </td>
+                            </tr>
+                        <?php }; ?>
+                    <?php endif; ?>
                     </tbody>
                 </table>
               
@@ -256,7 +257,7 @@
                    Así mismo, autorizo a CAPPIUTEP para que realice el descuento
                    de mi sueldo mensual o por giros especiales, los montos correspondientes
                    a la cancelación del crédito recibido, de acuerdo al cronograma de pago
-                   establecido y aceptado.  
+                   establecido y aceptado.
                 </p>
                 <div class="ui center aligned basic segment">
                     <div class="field">
@@ -273,8 +274,10 @@
                 <input type="hidden" name="montoMax" id="montoMax" value="<?php if(isset($monto))     echo $monto; ?>">
                 <!--   Fin de Valores para validaciones -->
                 <?php 
-                    if ( $dia_max_prestamo < date('d') )
+                    if ( $dia_max_prestamo >= date('d') )
                         echo '<input type="button" class="ui primary button" value="Solicitar" name="btnSolicitar" onclick="enviar(this.value)">';
+
+                   // echo 'XXXXXXX'.$dia_max_prestamo;
                 ?>
                 <!--<input type="submit" class="ui primary button" value="Solicitar" name="btnSolicitar">-->
                 <a class="ui red button" href="Prestamos.php">Cancelar</a>   
@@ -631,7 +634,7 @@
                     $("#formulario").submit();
                     swal({
                         type:"success",
-                        text:"Operacion exitosa",
+                        text:"Operacion exitosa xxxxx",
                         showCancelButton: false,
                         confirmButtonText: "Continuar",
                         confirmButtonColor: "#2185d0",

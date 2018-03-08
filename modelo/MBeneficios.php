@@ -135,7 +135,10 @@ class Beneficio extends CModeloDatos {
             break;
             case 5: //prestamo de vehiculo
                 $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,id_programa) VALUES( (SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->idprograma' )";
-            break;  
+            break; 
+            case 6: //prestamo personal
+                echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT pc.id_persona FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),'1',CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
+            break; 
         }
         return $this->ejecutar2($sql);
     }

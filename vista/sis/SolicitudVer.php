@@ -22,6 +22,8 @@
         //    $datosFiadores = $OBenef->buscarFiadores($id);
         //$haberesSocio = $OSocio->getHaberes($datosSolicitud["id_persona"]);
     }
+
+   // echo '#'.$_GET["id"]; exit();
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,57 +72,116 @@
             Imprimir
         </a>
   <?php
+
+    echo $datosSolicitud['id_beneficio'].'*';
     switch ($datosSolicitud['id_beneficio']) {
-      case '1':
+      case '1':{
 
   ?>
   <h2 class="ui center aligned small block icon inverted header">
-      <i class="money icon"></i>
-      Préstamos                
+        <i class="money icon"></i>
+        Préstamos                
     </h2>
-    <form class="ui large form" method="POST" action="../../ctrl/c_prestamo_especial.php" name="formulario" id="formulario">
-        
-    <h3 class="ui center aligned header">Préstamo de Fondo Común</h3> 
-                  
-    <h4 class="ui dividing header">Datos del solicitante</h4>
-      <div class="three fields">
-          <div class="field">
-            <label>Cédula</label>
-            <div class="ui transparent input"><!-- Nro Cedula -->
-              <input type="text" name="Cedu" id="Cedu" value="<?php if(isset($datosSolicitud['cedula'])) echo $datosSolicitud['nacionalidad'].'-'.$datosSolicitud['cedula']; ?>" readonly>
+    <form class="ui large form" method="POST" action="../../ctrl/c_prestamo_personal.php" name="formulario" id="formulario">
+    
+        <h3 class="ui center aligned header"> Analísis del Préstamo de Fondo Cesantia</h3> 
+              
+        <h4 class="ui dividing header">Datos del solicitante</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Cédula</label>
+                <div class="ui transparent input"><!-- Nro Cedula -->
+                    <input type="text" name="Cedu" id="Cedu" value="<?php if(isset($datosSolicitud['cedula'])) echo $datosSolicitud['nacionalidad'].'-'.$datosSolicitud['cedula']; ?>" readonly>
+                </div>
             </div>
-          </div>
 
-          <div class="field"><!-- Nombre -->
-            <label>Nombre y Apellido</label>
-            <div class="ui transparent input">
-              <input type="text" name="Nombre" id="Nombre"  value="<?php if(isset($datosSolicitud['nombre1'])) echo $datosSolicitud['nombre1'].' '.$datosSolicitud['apellido1']; ?>" readonly>
+            <div class="field"><!-- Nombre -->
+                <label>Nombre y Apellido</label>
+                <div class="ui transparent input">
+                <input type="text" name="Nombre" id="Nombre"  value="<?php if(isset($datosSolicitud['nombre1'])) echo $datosSolicitud['nombre1'].' '.$datosSolicitud['apellido1']; ?>" readonly>
+                </div>
             </div>
-          </div>
+        </div>
+        <h4 class="ui dividing header">Datos de la solicitud</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Monto Solicitado: </label>
+                <div class="ui input">
+                    <?php echo $moneda.(number_format($datosSolicitud['monto'],2,",",".")) ?>
+                </div>
+            </div>
+            <div class="field">
+                <label>Plazos:</label>
+                <div class="ui transparent input">
+                    <?php echo $datosSolicitud['cuotas'] ?>
+                </div>
+            </div>
+            <div class="field">
+                <label>Tasa de Interés (%):</label>
+                <div class="ui  input">
+                    <?php echo $datosSolicitud['interes_cuotas'] ?>
+                </div>
+            </div>
+            
+        </div>
+        <h4 class="ui dividing header">Tabla de Amortización</h4>
+       <div>
+          <table class="ui table">
+              <thead>
+                  <tr>
+                      <th height="10">Nro</th>
+                      <th height="20">Mes</th>
+                      <th height="40">Año</th>
+                      <th height="40">Capital</th>
+                      <th height="40">Interés</th>
+                      <th height="40">Cuota</th>
+                      <th height="40">Saldo</th>
+                  </tr>
+              </thead>
+              <tbody id="tablaAmortizacion">
+
+              </tbody>
+          </table>
+
       </div>
-    <h4 class="ui dividing header">Datos de la solicitud</h4>
-      <div class="three fields">
-        <div class="field">
-           <label>Monto Solicitado </label>
-           <div class="ui input">
-		<?php echo ($moneda.$datosSolicitud['monto']) ?>
-           </div>
-          </div>
-        <div class="field">
-           <label>Tasa de Interés (%):</label>
-           <div class="ui  input">
-              <?php echo $datosSolicitud['interes_cuotas'] ?>
-           </div>
-          </div>
-        <!--<div class="field">
-           <label>Total a cancelar:</label>
-           <div class="ui transparent input">
-              <input type="text" name="total_cancelar" id="total_cancelar" readonly value="<?php printf('%.2f',($datosSolicitud['monto'] * $datosSolicitud['interes_cuotas'] / 100) + $datosSolicitud['monto']) ?>">
-           </div>
-          </div>-->
-      </div>
-      <!--
-      <div class="ui two blue cards">
+<!--
+        <div>
+                <h4 class="ui dividing header">Fiadores</h4>
+                <table class="ui table">
+                    <thead>
+                        <tr>
+                            <th>Fiador</th>
+                            <th>Cantidad a Prestar</th>
+                            <th>Haberes Disponibles</th>
+                            <th>Cantidad Máxima a Prestar (80%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($datosFiadores as $idx => $fiadores): ?>
+                            <tr>
+                                <td><?= $fiadores["nombre1"]." ".$fiadores["apellido1"] ?></td>
+                                <td><?php echo number_format($fiadores["prestamo"])  ?> </td>
+                                <?php 
+                                    $OSocio -> setIdPersona($fiadores["idpersona"]);
+                                    $registro=$OSocio -> busHaber();
+                                    $Hab = $OSocio->getArreglo($registro);
+                                ?>
+                                <td>
+                                    <?php echo number_format($Hab['saldo']-$Hab['saldo_bloq_prestamo']-$Hab['saldo_bloq_fianza'], 0, ',', '.');  ?>
+                                </td>
+                                <td>
+                                    <?php 
+                                        $maxima = ($Hab['saldo']-$Hab['saldo_bloq_prestamo']-$Hab['saldo_bloq_fianza']) * 0.8;
+                                        echo number_format($maxima, 0, ',', '.');
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        <div class="ui two blue cards">
 
               <div class="ui card">
                 <div class="content">
@@ -170,12 +231,12 @@
                 </div>
               </div>  
 
-            </div>
-            -->
+        </div>-->
     <?php 
+  }
         break; //fin del case 1
 
-        case 2:
+        case '2':
     ?>
     <h2 class="ui center aligned small block icon inverted header">
         <i class="money icon"></i>

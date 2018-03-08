@@ -1,8 +1,11 @@
 <?php
 session_start();
     require_once("../../controlador/CRoles.php");
+
     include_once("../../modelo/MCombo.php");
     $combo = new Combo();
+
+    
 
     	switch ($_POST['evento']) {
     		case 'guardar':{

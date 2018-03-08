@@ -160,6 +160,7 @@
 					      		<th>Estatus</th>
 					      		<th align="center">Fondo</th>
 					      		<th>Aporte Inicial</th>
+					      		<th>Aporte %</th>
 					      	</tr>
 					      	<tr>
 					      		<td style="width: 5%; " align="center">
@@ -169,6 +170,7 @@
 					      					<input type="hidden" name="fondoco" value="1">
 					      					<input type="hidden" name="nuevoco" value="0">
 					      					';
+					      					$por='<input type="text" name="porcefco" style="background: #eee;" readonly="" value="'.$Soc['porcentajefco'].'" class="form-control">';
 					      				 }else{ 
 					      					echo '<input type="checkbox" name="fondoco" value="1">
 					      					<input type="hidden" name="nuevoco" value="1">
@@ -176,12 +178,14 @@
 					      					';
 
 					      					$campo='<input type="text" name="aporteco" value="" class="form-control">'; 
+					      					$por='<input type="text" name="porcefco"  readonly="" value="" class="form-control">';
 					      				}
 					      			?>
 
 					      		</td>
 					      		<td>Fondo Comun</td>
 					      		<td><?php echo $campo; ?></td>
+					      		<td><?php echo $por; ?></td>
 					      	</tr>
 				      	<tr>
 				      		<td align="center" style="width: 5%;  ">

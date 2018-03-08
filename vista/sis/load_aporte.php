@@ -80,11 +80,9 @@
 
             }
             */
-            $valorp=$rowf['valorp'];
+           
 
-            $u=($rowf['sueldo_base'] * $valorp) / 100;
-
-
+ $valorp=$rowf['valorp'];
 
             echo '<script> t++; </script>';
 
@@ -95,11 +93,16 @@
             if($rowap=$dbap->getArreglo($dfap)){
               $reap="readonly";
               $pon++;
+              $valorp=$rowap['porcentaje'];
+              
 
             }else{
               $reap='';
             }
 
+            
+
+            $u=($rowf['sueldo_base'] * $valorp) / 100;
               
 
             echo '
