@@ -83,10 +83,25 @@ session_start();
 
       </div> 
     <div class="ui block dividing header"></div>
-    <?php
+      <table class="table table-bordered" style="width: 30%; margin: 0 auto;">
+        <tr>
+          <th style="background: #EEE;">Fondo</th>
+          <td style="width: 70%;">
+            <select class="ui search dropdown selection" onchange="ver_aporte(this.value)">
+              <option value=""></option>
+              <option value="1">Cesantia</option>
+              <option value="2">Comun</option>
+            </select>
+          </td>
+        </tr>
+      </table>
 
-     
-    ?>
+
+      
+        <div class="" id="muestra" style="width: 80%; margin: 0 auto;">
+          
+        </div>
+      
 
 </div>
 
@@ -96,4 +111,8 @@ session_start();
     function verReporte(){
       window.open("../../fpdf/PDFHaberes.php");
     } 
+
+    function ver_aporte(p){
+      $("#muestra").load('muestra_aporte.php?tipo='+p);
+    }
 </script>

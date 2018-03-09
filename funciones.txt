@@ -1,0 +1,1 @@
+ $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$rowtf['id_persona']."', '1' ,'".date(Y)."', '".date(m)."','1','".$aptce."')";

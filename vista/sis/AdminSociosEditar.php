@@ -160,7 +160,6 @@
 					      		<th>Estatus</th>
 					      		<th align="center">Fondo</th>
 					      		<th>Aporte Inicial</th>
-					      		<th>Aporte %</th>
 					      	</tr>
 					      	<tr>
 					      		<td style="width: 5%; " align="center">
@@ -185,7 +184,6 @@
 					      		</td>
 					      		<td>Fondo Comun</td>
 					      		<td><?php echo $campo; ?></td>
-					      		<td><?php echo $por; ?></td>
 					      	</tr>
 				      	<tr>
 				      		<td align="center" style="width: 5%;  ">
