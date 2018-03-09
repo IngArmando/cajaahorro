@@ -43,25 +43,15 @@
 
             
           if($_GET['cod'] =='T'){
-//$sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' or fcomun='1' order by apellido1 asc";
-              $sql="select * from cappiutep.conf_aporte as cp
-                  inner join cappiutep.t_persona as p on p.id_persona=cp.id_persona
-                  where p.fcomun='1' AND cp.tipoc='2' or fcomun='1' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' or fcomun='1' order by apellido1 asc";
           }elseif($_GET['cod'] == 1){
-            // $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' order by apellido1 asc";
-             $sql="select * from cappiutep.conf_aporte as cp
-                  inner join cappiutep.t_persona as p on p.id_persona=cp.id_persona
-                  where p.fcesantia='1' AND cp.tipoc='1' AND p.id_tipo_persona='2' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' and fcesantia='1' order by apellido1 asc";
 
           }else{
-
-            $sql="select * from cappiutep.conf_aporte as cp
-                  inner join cappiutep.t_persona as p on p.id_persona=cp.id_persona
-                  where p.fcomun='1' AND cp.tipoc='2' AND p.id_tipo_persona='2' order by apellido1 asc";
-            // $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' AND fcomun='1' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='2' AND fcomun='1' order by apellido1 asc";
           }
 
-          
+
           $as=$db->ejecutar($sql);
 
 
@@ -69,6 +59,7 @@
           while ($row=$db->getArreglo($as)) {
             # code...
             $o++;
+
 
            /*  if($_GET['cod'] == 2){
 
@@ -91,40 +82,32 @@
             */
            
 
- //$valorp=$rowf['valorp'];
-  if($row['porcentajec'] == ''){
-                $valorp=$rowf['valorp'];
-              }else{
-                $valorp=$row['porcentajec'];
-              }
+ $valorp=$rowf['valorp'];
 
             echo '<script> t++; </script>';
 
-              $sqlap="select * from cappiutep.conf_aporte where id_persona='".$row['id_persona']."' ";
-             
+             $sqlap="select * from cappiutep.aporte where mes='".date(m)."' AND ano='".date(Y)."' AND id_persona='".$row['id_persona']."' ";
             $dbap= new CModeloDatos;
             $dfap=$dbap->ejecutar($sqlap);
               
-           if($rowap=$dbap->getArreglo($dfap)){
-              $reap="";
+            if($rowap=$dbap->getArreglo($dfap)){
+              $reap="readonly";
               $pon++;
-
-             
-              
+              $valorp=$rowap['porcentaje'];
               
 
             }else{
-              
+              $reap='';
             }
 
-           // echo '<br>'.$rowap['id_persona'];
+            
 
-             $u=($rowf['sueldo_base'] * $valorp) / 100;
+            $u=($rowf['sueldo_base'] * $valorp) / 100;
               
 
             echo '
               <tr>
-                
+              	
                   <td width="8%">'.$o.' </td>
                   <td width="10%">'.$row['cedula'].' <input type="hidden" name="cedula['.$o.']" value="'.$row['id_persona'].'"></td>
                   <td width="25%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
@@ -133,7 +116,7 @@
                   <td width="20%">
                      <!--input type="text" name="" style="width:60%;" class="form-control" '; if($_GET['cod']== 2){ echo 'readonly value="1"'; }else{ echo 'value="'.$valorp.'"';}; echo '--!>
 
-                     <input type="text" name="porce['.$o.']" style="width:60%;" id="ct_'.$o.'" '.$reap.' class="form-control" value="'.$valorp.'" onkeyup="operaciones(this.value,'.$o.','.$rowf['sueldo_base'].','.$row['id_persona'].','.$_GET['cod'].','.$row['cod_confiaporte'].')">
+                     <input type="text" name="porce['.$o.']" style="width:60%;" id="ct_'.$o.'" '.$reap.' class="form-control" value="'.$valorp.'" onkeyup="operaciones(this.value,'.$o.','.$rowf['sueldo_base'].')">
                       
                   </td>
                   <td> '; 
@@ -145,7 +128,6 @@
                 
               </tr>
             ';
-
           }
 
           if($pon >0){
@@ -159,7 +141,11 @@
     
  </tbody>
 
- 
+ <tfoot>
+   <tr> <td colspan="7" >
+      <center> <button class="btn btn-success" type="submit" <?php echo $ui; ?> name="evento" value="guardar">Guardar</button></center>
+   </td></tr>
+ </tfoot>
 
 
   <script type="text/javascript">
@@ -233,7 +219,7 @@
     });
       } );
 
-        function operaciones(v,p,sb,dn,tipo,cod){
+        function operaciones(v,p,sb){
 
         	tc=document.getElementById('tc_'+p);
         	if(v == ''){ v=0; }else{ v=v; }
@@ -241,8 +227,6 @@
          // alert(p+' - '+v);
          op=(parseFloat(sb) * parseFloat(v))  / 100;
           tc.value=op;
-
-          $("#tc_"+p).load('registra_aportes.php?pc='+v+'&cod='+cod);
         }
 
       

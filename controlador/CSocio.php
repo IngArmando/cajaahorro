@@ -126,12 +126,14 @@ switch($operacion){
                         $tt=$dbg2->ejecutar($sqlha);
 
                         if($fce == 1){ 
-                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$rowtf['id_persona']."', '1' ,'".date(Y)."', '".date(m)."','1','".$aptce."')";
+                       echo  $sqlha="insert into cappiutep.conf_aporte(id_persona,tipoc,estatus) values('".$rowtf['id_persona']."', '1','1')";
                         $tt=$dbg2->ejecutar($sqlha);
                       }
 
                       if($fco == 1){ 
-                       echo  $sqlha="insert into cappiutep.aporte(id_persona,tipo,ano,mes,estatus,aportado) values('".$rowtf['id_persona']."', '2' ,'".date(Y)."', '".date(m)."','1','".$aptco."')";
+                      
+                       echo  $sqlha="insert into cappiutep.conf_aporte(id_persona,tipoc,estatus) values('".$rowtf['id_persona']."', '2','1')";
+
                         $tt=$dbg2->ejecutar($sqlha);
                       }
                      

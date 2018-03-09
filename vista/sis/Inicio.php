@@ -35,6 +35,8 @@
     }
 
     $_SESSION["personaje"]= $Soc["id_persona"];
+
+    @include_once('funciones_generales.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">

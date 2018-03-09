@@ -85,8 +85,7 @@ session_start();
     <div class="ui block dividing header"></div>
     <?php
 
-      $listado=$OSocio->listarHaber($Soc["id_persona"]);
-      foreach ($listado as $tagtp){echo $tagtp;}
+     
     ?>
 
 </div>
