@@ -97,7 +97,7 @@ session_start();
       </table>
 
 
-      
+      a
         <div class="" id="muestra" style="width: 80%; margin: 0 auto;">
           
         </div>
@@ -109,7 +109,7 @@ session_start();
 </html>
 <script type="text/javascript">
     function verReporte(){
-      window.open("../../fpdf/PDFHaberes.php");
+     // window.open("../../fpdf/PDFHaberes.php");
     } 
 
     function ver_aporte(p){

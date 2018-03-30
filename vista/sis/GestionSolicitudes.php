@@ -79,7 +79,7 @@
 		<?php 
 		//$CargoCaja=3; 
 
-		echo $pendientes_aprobacion.' * '.$pendientes_liquidacion.' * '.$pendientes_analisis;
+		//echo $pendientes_aprobacion.' * '.$pendientes_liquidacion.' * '.$pendientes_analisis;
 		switch ($CargoCaja) {
 			case '2':
 			echo '<div class="ui top attached tabular two item blue menu">
@@ -243,7 +243,12 @@
 								<td><?php echo $solicitud["tipo"]; ?></td>
 								<td><?php echo number_format($solicitud["monto"] + $solicitud["monto_pago_especial"],2,",","."); ?></td>
 								<td>
+								<form name="" id="" action="../../controlador/CAprobarSolicitud.php" method="POST">
+									<input type="hidden" name="opera" id="opera" value="Atrasar">
+									<input type="hidden" name="idSolicitud" value="<?php echo $solicitud['id_beneficio_solicitud'] ?>">
+									<input type="submit" class="ui tiny red button" value="Atrasar" onclick="javascript:location.href=''">
 									<input type="button" class="ui tiny primary button" value="Procesar Liquidacion" onclick="javascript:location.href='PresLiquidacion.php?id=<?php echo $solicitud["id_beneficio_solicitud"] ?>'">
+								</form>
 								</td>
 							</tr>
 							<?php endif; ?>

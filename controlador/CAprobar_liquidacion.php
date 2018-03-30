@@ -1,5 +1,5 @@
 <?php 
-
+//echo 'Funciono '; exit();
 session_start();
 
 //echo 'NNNNNN* '.$_POST["opera"]; exit();
@@ -100,5 +100,6 @@ session_start();
 			
 		break;
 	}
-	header("location: ../vista/sis/GestionSolicitudes.php");
+	$_SESSION['msj']="Entro normal";
+	header("location: ../vista/sis/liquidar_prestamos.php");
 ?>
