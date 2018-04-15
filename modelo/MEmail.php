@@ -26,10 +26,10 @@ class SendMail{
 		$this->smtpsecure="ssl";
 		$this->host="smtp.gmail.com";
 		$this->port=465;
-		$this->username_mail="cappiutep.info@gmail.com";//cambiar cuenta de correo.
-		$this->passwd_mail="n0tificaci0nes";//cambiar contraseña.
+		$this->username_mail="monasterios.aarmando@gmail.com";//cambiar cuenta de correo.
+		$this->passwd_mail="@18141122";//cambiar contraseña.
 		$this->from="no-reply@gmail.com";//correo del remitente.
-		$this->fromname=utf8_decode("CAPPIUTEP en línea");//nombre a mostrar del remitente.
+		$this->fromname=utf8_decode("Gobernacion de Pastaza");//nombre a mostrar del remitente.
 		$this->to=null;
 		$this->toname=null;
 		$this->tocc=null;

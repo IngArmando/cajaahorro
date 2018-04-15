@@ -109,5 +109,5 @@
 
      echo  corre_socios();
 
-     if(date(d) >=1 && date(d) <= 10){echo aportes_mensuales(); }else{}     
+     if(date(d) >=1 && date(d) <= 31){ echo aportes_mensuales(); }else{}     
 ?>

@@ -77,6 +77,7 @@ session_start();
               <th width="15%">V.Descuento</th>
               <th width="15%">V.Descontado</th>
               <th width="15%">Diferencia</th>
+              <th width="15%">Deposito</th>
             </tr>
 
             <?php
@@ -110,9 +111,15 @@ session_start();
                     echo '
                     <tr>
                         <td><b>Aporte Fondo: </b> : '.$tip.'</td>
-                        <td>'.$rowap['aporte_a'].' </td>
+                        <td>'.$rowap['aporte_a'].'</td>
                         <td><input type="text" class="form-control" '.$lit.' '.$gene.' id="aporte'.$app.'" onblur="guarda_aporte(this.value,'.$app.','.$rowap['aporte_a'].','.$rowap['cod_aporte'].','.$rowap['id_persona'].')" name="" value="'.number_format($descontado,2).'"></td>
                         <td id="mapp'.$app.'">'.number_format($dif,2).'</td>
+                        <td id="deposito'.$app.'">';
+
+                        	if($dif >0 || $rowap['deposito'] < 0){ $dr='';  }else{ $dr='readonly'; }
+
+                        	echo '<input id="deposit'.$app.'" type="" name="" onblur="guarda_aported(this.value,'.$app.','.$rowap['aporte_a'].','.$rowap['cod_aporte'].','.$rowap['id_persona'].','.$descontado.')" class="form-control" '.$dr.' value="'.number_format($dif,2).'">
+                        </td>
                     </tr>';
 
                     $hg+=$rowap['aporte_a'];
@@ -213,6 +220,12 @@ session_start();
                         <td>'.$rowde['pago'].' </td>
                         <td><input type="text" class="form-control" '.$listobe.' '.$genebe.' id="bene'.$bene.'" onblur="guarda_beneficio(this.value,'.$bene.','.$rowde['pago'].','.$rowde['id_detalle_amortizacion'].')" name="" value="'.number_format($descontadobe,2).'"></td>
                         <td id="mdifbe'.$bene.'">'.number_format($difbe,2).'</td>
+                                                <td id="deposito'.$app.'">';
+
+                        	if($difbe >0 || $rowde['deposito'] < 0){ $dr='';  }else{ $dr='readonly'; }
+
+                        	echo '<input id="depositt'.$bene.'" type="" name="" onblur="guarda_beneficiod(this.value,'.$bene.','.$rowde['pago'].','.$rowde['id_detalle_amortizacion'].','.$descontadobe.')" class="form-control" '.$dr.' value="'.number_format($difbe,2).'">
+                        </td>
                     </tr>';
 
                     $hg+=$rowde['pago'];
@@ -339,6 +352,22 @@ session_start();
     }
   }
 
+  function guarda_beneficiod(d,n,m,c,de){
+    var op=0;
+    bene=document.getElementById('depositt'+n);
+    dife=document.getElementById('mdifbe'+n);
+    if(d > m){
+     alert('El Monto es mayor al valor de la cuota');
+     bene.value=0;
+    }else{
+      op=parseFloat(m) - parseFloat(d);
+      dife.innerHTML=''+op;
+      bene.readOnly=true;
+      bene.setAttribute('onclick','');
+      $("#depositt"+n).load('guarda_beneficiod.php?benefi='+c+'&montobe='+d+'&descu='+de);
+    }
+  }
+
   function guarda_aporte(d,n,m,c,id){
     var op=0;
     casa=document.getElementById('aporte'+n);
@@ -353,6 +382,24 @@ session_start();
       
       casa.setAttribute('onclick','');
       $("#aporte"+n).load('guarda_aporte.php?casas='+c+'&monto='+d+'&id='+id);
+      casa.readOnly=true;
+    }
+  }
+
+  function guarda_aported(d,n,m,c,id,de){
+    var op=0;
+    casa=document.getElementById('deposit'+n);
+    dif=document.getElementById('mapp'+n);
+    if(d > m){
+     alert('El Monto es mayor al valor del Aporte');
+     casa.value=0;
+    }else{
+      op=parseFloat(m) - parseFloat(d);
+      op = op.toFixed(2);
+      dif.innerHTML=''+op;
+      
+      casa.setAttribute('onclick','');
+      $("#aporte"+n).load('guarda_aported.php?casas='+c+'&monto='+d+'&id='+id+'&des='+de);
       casa.readOnly=true;
     }
   }

@@ -704,6 +704,11 @@ public function guardarExtencion($tipo,$dni){
         return $this->ejecutar2("UPDATE cappiutep.t_beneficio_solicitud SET estatus=3 where id_beneficio_solicitud='$this->IdBeneficio'");
     }
 
+     public function liquidarSolicitud($esta) {
+        $this->guardarFlujoAprobacion(2,1);
+        return $this->ejecutar2("UPDATE cappiutep.t_beneficio_solicitud SET estatus=5 where id_beneficio_solicitud='$this->IdBeneficio'");
+    }
+
     public function recharzarSolicitud() {
         $this->guardarFlujoAprobacion(2,2);
         return $this->ejecutar2("UPDATE cappiutep.t_beneficio_solicitud SET estatus=6 where id_beneficio_solicitud='$this->IdBeneficio'");

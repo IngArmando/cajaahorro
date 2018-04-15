@@ -71,7 +71,7 @@ session_start();
      <table class="table table-bordered" >
        <tr  style="background: #EEE;">
          <th style="width:5%; ">Nº</th>
-         <th>Fecha</th>
+         <th>Fecha </th>
          <th>Cuotas</th>
          <th>Monto</th>
          <th><center>Cuotas Pendientes</center></th>
@@ -95,7 +95,7 @@ echo '<form method="post" action="extencion.php">
           $sqlc="SELECT * FROM cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$row['id_beneficio_solicitud']."'  order by mes asc";
          $asa=$db2->ejecutar($sqlc);
 
-         $m.='
+         $m.=' 
           <input type="hidden" name="soli" value="'.$row['id_beneficio_solicitud'].'">
                 <table  style="font-size:12px;" class="ui table celled"  id="Tabla">
                   <thead>
@@ -117,13 +117,10 @@ echo '<form method="post" action="extencion.php">
               $restantes++;
                $m.='
               <tr>
-                  
-              
                 <td>'.$rowc['anho'].'</td>
                 <td>'.meses($rowc['mes']).'</td>
                 <td>'.$rowc['pago'].'</td>
                 <td>'.number_format($rowc['descontado']).'</td>
-              
               </tr>
               '; 
 
@@ -155,7 +152,8 @@ echo '<form method="post" action="extencion.php">
                   <td style="width:20%;"><input type="text" class="form-control" readonly value="'.$adeudado.'"></td>
                   <td  width="5%;">
                     <form method="post" name="fromp'.$t.'" id="fromp'.$t.'" action="../../controlador/CAprobar_liquidacion.php">
-                      <input type="submit" class="ui tiny green button" value="Liquidar" onclick="return envianr('.$t.')" name="mnn"></td>
+                    <input type="hidden" name="idSolicitud" class="form-control" readonly value="'.$row['id_beneficio_solicitud'].'">
+                      <input type="submit" class="ui tiny green button" value="Liquidar" onclick="return enviar('.$t.')" name="mnn"></td>
                     </form>  
                 </t>
                 </tfooter>
@@ -168,23 +166,15 @@ echo '<form method="post" action="extencion.php">
                 <td>'.$row['cuotas'].'</td>
                 <td>'.$row['monto'].'</td>
                 <td>'.$m.'</td>
-                
               </tr>
                 </form>
               ';
           }
-
-
        ?>
-     </table>
-
-     
-    
+     </table> 
   </div>
 </div>
-    
 </div>
-
 <script type="text/javascript">
   function enviarr(){
     location.href="liquidar_prestamos.php";
@@ -208,12 +198,9 @@ echo '<form method="post" action="extencion.php">
     if($me == 10){ $mess="Octubre" ;}
     if($me == 11){ $mess="Noviembre" ;}
     if($me == 12){ $mess="Diciembre" ;}
-
     return $mess;
   }
- 
 ?>
-
 <script type="text/javascript">
   
   function ver_bienes(a) {
@@ -287,6 +274,7 @@ echo '<form method="post" action="extencion.php">
     casa.value='';
   }
 function enviar(p){ 
+ if(confirm('Desea Realizar Esta Operacion ...?')){  }else{ return false;}
  
 }    
 

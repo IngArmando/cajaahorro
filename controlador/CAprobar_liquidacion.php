@@ -1,5 +1,5 @@
 <?php 
-//echo 'Funciono '; exit();
+//echo 'Funciono '.$_POST['mnn']; exit();
 session_start();
 
 //echo 'NNNNNN* '.$_POST["opera"]; exit();
@@ -8,7 +8,7 @@ session_start();
 
 	$OBenef->setIdBeneficio($_POST["idSolicitud"]);
 	$OBenef->observacion = $_POST["observacion"];
-	$operacion = $_POST["opera"];
+	$operacion = $_POST["mnn"];
 
 	//Para enviar correos
     include_once("../modelo/MEmail.php");
@@ -20,15 +20,11 @@ session_start();
     $Email  = $solicitud['email'];
 	
 	switch ($operacion) {
-		case 'Aprobar':
-			if($OBenef->aprobrarSolicitud())
+		case 'Liquidar':
+			if($OBenef->liquidarSolicitud())
 			{
 				$mensaje = "
-		        	Estimado Socio, le notificamos que su solicitud ha sido aprobada y tiene un plazo
-		        	de 30 días para acudir a la oficina de CAPPIUTEP y procesar la liquidación de la misma,
-		        	recuerde que si aún no ha consignado los documentos necesarios deberá hacerlo. Para más
-		        	información comuniquese con el personal de CAPPIUTEP.
-			        <br/>
+		        	Estimado Socio, le notificamos que Su prestamo a sido liquidado Sastifactoriamente
 			        <br/>
 			        <br/>
 		        	NOTA: este es un mensaje enviado por sistema, por favor no responda al mismo ya que no será atendido 
@@ -100,6 +96,6 @@ session_start();
 			
 		break;
 	}
-	$_SESSION['msj']="Entro normal";
+	$_SESSION['msj']="Operacion Realizada Correctamente";
 	header("location: ../vista/sis/liquidar_prestamos.php");
 ?>
