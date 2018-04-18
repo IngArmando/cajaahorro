@@ -106,10 +106,21 @@
                 ?>
 
               <div class="required field">
+                <label>Monto Adicional</label>
+                <div class="ui left labeled input">
+                  <div class="ui label"><a onclick="retorname(<?php echo $monto_adeudado?>)"><?= $moneda ?></a></div>
+                  <input type="text" name="" id="mas" onkeypress="return soloNumeros(event)" onblur="pon_monto(this.value)" maxlength="10" value="">
+
+                
+
+                </div>
+              </div>
+
+               <div class="required field">
                 <label>Monto Adeudado</label>
                 <div class="ui left labeled input">
                   <div class="ui label"><a onclick="retorname(<?php echo $monto_adeudado?>)"><?= $moneda ?></a></div>
-                  <input type="text" name="" id="adeudado" onkeypress="return soloNumeros(event)" onblur="pon_monto(this.value)" maxlength="10" value="<?php echo $monto_adeudado?>">
+                  <input type="text" readonly style="background:#EEE;" name="" id="adeudado" onkeypress="return soloNumeros(event)" onblur="" maxlength="10" value="<?php echo $monto_adeudado?>">
 
                   <input type="hidden" name="tipo" value="<?php echo $_POST['tipo'];?>">
                   <input type="hidden" name="dni" value="<?php echo $_POST['dni'];?>">
@@ -669,9 +680,25 @@
     }
 
     function pon_monto(m){
+        if(m == ''){ m=0; }else{ m=m;}
+
+        mas=document.getElementById('mas');
+        adde=document.getElementById('adeudado');
         mont=document.getElementById('Monto');
-        mont.value=m;
-        amortizacionNueva();
+        op=parseFloat(m) + parseFloat(adde.value);
+
+        if(parseFloat(op) > 2000){
+           alert('El Monto Solicitado Supera el Maximo Permitido');
+           mas.value=0;
+           mont.value=adde.value;
+           amortizacionNueva();
+
+
+        }else{
+            mont.value=op;
+            amortizacionNueva();
+        }
+        
     }
 
     function retorname(ad){
