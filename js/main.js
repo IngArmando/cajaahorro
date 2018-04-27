@@ -115,6 +115,10 @@ function limpiarTablaAmortizacion(){
     tbody = document.getElementById('tablaAmortizacion');
     tbody.innerHTML="";
 }
+function limpiarTablaAmortizacion2(p){
+    tbody = document.getElementById('tablaAmortizacion'+p);
+    tbody.innerHTML="";
+}
 function calcularDiasRestantes(f1,f2){
     var aFecha1 = f1.split('/');
     var aFecha2 = f2.split('/'); 
