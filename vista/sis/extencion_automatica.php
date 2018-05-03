@@ -66,8 +66,8 @@
     <script src="../../js/jquery-ui/jquery-ui.js"></script><!-- Selector de fecha -->
 </head>
 <body>  
-    <?php include_once('Menu.php'); ?> <!-- Menu Lateral -->
-    <div class="ui container">
+    <?php //include_once('Menu.php'); ?> <!-- Menu Lateral -->
+    <div class="ui container" style="margin-top: 0px;">
         <h2 class="ui center aligned small block icon inverted header">
             <i class="money icon"></i>
             Extencion De Préstamos
@@ -105,35 +105,12 @@
                              $monto_adeudado=$todo-$descontado;
                 ?>
 
-              <div class="required field">
-                <label>Monto Adicional</label>
-                <div class="ui left labeled input">
-                  <div class="ui label"><a onclick="retorname(<?php echo $monto_adeudado?>)"><?= $moneda ?></a></div>
-                  <input type="text" name="" id="mas" onkeypress="return soloNumeros(event)" onblur="pon_monto(this.value)" maxlength="10" value="">
-
-                
-
-                </div>
-              </div>
-
+             
                <div class="required field">
                 <label>Monto Adeudado</label>
                 <div class="ui left labeled input">
-                  <div class="ui label"><a onclick="retorname(<?php echo $monto_adeudado?>)"><?= $moneda ?></a></div>
-                  <input type="text" readonly style="background:#EEE;" name="" id="adeudado" onkeypress="return soloNumeros(event)" onblur="" maxlength="10" value="<?php echo $monto_adeudado?>">
-
-                  <input type="hidden" name="tipo" value="<?php echo $_POST['tipo'];?>">
-                  <input type="hidden" name="dni" value="<?php echo $_POST['dni'];?>">
-                  <input type="hidden" name="soli" value="<?php echo $_POST['soli'];?>">
-
-                </div>
-              </div>     
-
-               <div class="required field">
-                <label>Monto a solicitar</label>
-                <div class="ui left labeled input">
                   <div class="ui label"><?= $moneda ?></div>
-                  <input type="text" name="Monto" id="Monto" style="background:#EEE;" readonly onkeypress="return soloNumeros(event)" maxlength="10" value="<?php echo $monto_adeudado?>">
+                  <input type="text" name="Monto" id="Monto" style="background:#EEE;" readonly onkeypress="return soloNumeros(event)" maxlength="10" value="<?php echo $_GET['monto']?>">
 
                 </div>
               </div>       
@@ -145,7 +122,7 @@
                 //foreach ($tagcbotp as $tagtp){echo $tagtp;}
                 ?>
                 <select name="Plazo" id="Plazo" class="ui compact dropdown" >
-                    <?php for($pl=1;$pl<=40;$pl++): ?>
+                    <?php for($pl=$_GET['pla'];$pl<=40;$pl++): ?>
                         <option value="<?=$pl?>"><?=$pl?></option>
                     <?php endfor; ?>
                 </select>
@@ -175,60 +152,14 @@
 
             <div class="ui center aligned basic segment">
                 <div class="inline field">
-                    <button type="button" class='ui labeled icon button' onclick="amortizacionNueva()">
+                    <button type="button" class='ui labeled icon button' onclick="amortizacionNueva2()">
                         <i class='check icon'></i>
                         Ver Tabla de Amortización
                     </button>
                 </div>
             </div>                
 
-            <!--
-            <div class="ui center aligned basic segment">
-                <div class="inline field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="terminos" id="terminos">
-                        <label ><b>Permitir Cuotas Especiales</b> (Opcional) <i class='fitted help circle icon link' data-title="Ayuda" data-content='Las cuotas especiales, son cuotas adicionales de caracter opcional que permiten acelerar la amortización del préstamo. Serán dos cuotas anuales y el monto se definirá por la capacidad de pago del socio.' data-variation='basic'></i></label>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="divCuotasEspeciales" class="">
-                <div class="four fields">
-                    
-                    <div class="field">
-                        <label>Monto del Pago Especial</label>
-                        <div class="ui left labeled input">
-                            <div class="ui label">Bs.</div>
-                            <input type="text" name="MontoTotalEspecial" id="MontoEspecial">
-                        </div> 
-                    </div>
-                    <div class="field">
-                        <label>Monto a Solitar a Nómina</label>
-                        <div class="ui left transparent labeled input">
-                            <div class="ui label">Bs.</div>
-                            <input type="text" name="MontoNominaReal" id="MontoSolicitarReal" readonly>
-                        </div> 
-                    </div>
-                    <div class="field">
-                        <label>Monto de la Cuota</label>
-                        <div class="ui left transparent labeled input">
-                            <div class="ui label">Bs.</div>
-                            <input type="text" name="MontoCuotaReal" id="MontoCuotaReal" readonly>
-                        </div> 
-                    </div>
-                    
-                    <div class="field">
-                        <br>
-                        <div class="ui left labeled input">
-                            <button type="button" class='ui labeled icon button' onclick="calcularAmortizacion()">
-                                <i class='check icon'></i>
-                                Ver Tabla de Amortización
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+          
             <div>
                 <table class="ui table">
                     <thead>
@@ -284,28 +215,7 @@
               
             </div>
 
-            <div class="ui message">
-                <p align="justify">
-                  En caso de que la presente solicitud fuese resuesta favorable,
-                  me comprometo a cumplir con las disposiciones previstas en los 
-                  Estatutos, Reglamentos y demás normativas legales vigentes,
-                  que rigen a ésta Asociacion.
-                </p>
-                <p align="justify">
-                   Así mismo, autorizo a CAPPIUTEP para que realice el descuento
-                   de mi sueldo mensual o por giros especiales, los montos correspondientes
-                   a la cancelación del crédito recibido, de acuerdo al cronograma de pago
-                   establecido y aceptado.  
-                </p>
-                <div class="ui center aligned basic segment">
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="terminos" id="terminos">
-                            <label for="terminos"><b>He leído, entiendo y estoy de acuerdo con las condiciones descritas.<b></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
             <div class="ui center aligned block inverted header">
                 <input type="hidden" name="opera" id="opera" value="Solicitar">
                 <!--   Valores para validaciones -->
@@ -337,101 +247,7 @@
 
     }
    
-    function calcularAmortizacion(){
-        limpiarTablaAmortizacion();
-        auxHoy = new Date();
-        hoy = new Date();
-        mes = hoy.getMonth() + 1;
-        dia = hoy.getDate();
-        anho = hoy.getFullYear();
-        hoy = hoy.getDate()+"/"+(hoy.getMonth() + 1)+"/"+hoy.getFullYear();
-        prestamo = document.getElementById("MontoEspecial").value;
-        prestamoActual = prestamo;
-        cuotas = document.getElementById("Plazo").value;
-        cantGiros = cuotas / 12 * 2;
-        interes = document.getElementById("Interes").value;
-        diasAnho = 360;
-        cuota = prestamo / cantGiros;
-        if(mes>=7){
-            entro = 1;
-            primermes = 12;
-            segundomes = 7;
-            diferencia = primermes - segundomes;
-            primerafecha = dia+"/12/"+anho;
-        }else{
-            entro = 2;
-            primermes = 7;
-            segundomes = 12;
-            primerafecha = dia+"/7/"+anho;
-        }
-        fecha = primerafecha;
-        tbody = document.getElementById('tablaAmortizacion');
-        for(it = 1;it<=cantGiros;it++){
-            row = it-1;
-            auxPrestamo = prestamo;
-            deuda = prestamo - cuota;
-            prestamo = deuda;
-            tr=tbody.insertRow(row);
-            td0 = tr.insertCell(0);
-            td1 = tr.insertCell(1);
-            td2 = tr.insertCell(2);
-            td3 = tr.insertCell(3);
-            td4 = tr.insertCell(4);
-            td5 = tr.insertCell(5);
-
-            td0.innerHTML = it;
-
-            if(mes==0){ mes = 12; fanho=auxFecha.getFullYear() -1; }else{ fanho=auxFecha.getFullYear(); }
-
-            if(it==1){
-                td1.innerHTML=fecha;
-                dias_pasados = calcularDiasRestantes(hoy,fecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-            }
-            fecha2 = fecha.split("/");
-            fecha2 = fecha2[2]+"/"+fecha2[1]+"/"+fecha2[0];
-            if(it>1 && it%2==0){
-                if(entro==2){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 5);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-                else if(entro==1){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 7);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-
-                dias_pasados = calcularDiasRestantes(fecha,auxFecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-
-                fecha = auxFecha;
-                td1.innerHTML=auxFecha;
-            }else if(it>1 && it%2==1){
-                if(entro==2){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 7);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-                else if(entro==1){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 5);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-
-                dias_pasados = calcularDiasRestantes(fecha,auxFecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-
-                fecha = auxFecha;
-                td1.innerHTML=auxFecha;
-            }         
-            td2.innerHTML=cuota.toFixed(2)+'***';
-            td3.innerHTML=giro.toFixed(2);
-            td4.innerHTML=(parseFloat(cuota)+parseFloat(giro)).toFixed(2);
-            td5.innerHTML=deuda.toFixed(2);
-        }
-    }
-
+   
     $(function(){ //Calcula los intereses
         $('#Plazo').on('change',function() {
             limpiarTablaAmortizacion();
@@ -694,12 +510,12 @@
            alert('El Monto Solicitado Supera el Maximo Permitido');
            mas.value=0;
            mont.value=adde.value;
-           amortizacionNueva();
+           amortizacionNueva2();
 
 
         }else{
             mont.value=op;
-            amortizacionNueva();
+            amortizacionNueva2();
         }
         
     }

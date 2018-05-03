@@ -16,7 +16,7 @@
 		public function CModeloDatos() {
 			$this->servidor   = "localhost";
 			$this->puerto     = "5432";
-			$this->basedato   = "caja";
+			$this->basedato   = "caja2";
 			$this->usuario    = "postgres";
 			$this->clave      = "5428";	
 		}	

@@ -237,7 +237,7 @@ class Configuracion extends CModeloDatos  {
     public function consultar($que="")  
     {
         $que = (isset($que)) ? $que : "*";
-        echo $sql="SELECT $que FROM cappiutep.t_configuracion"; 
+         $sql="SELECT $que FROM cappiutep.t_configuracion"; 
         return $this->consulta( $sql );
 
     }
@@ -245,7 +245,7 @@ class Configuracion extends CModeloDatos  {
     public function consultarE()  
     {
         $que = (isset($que)) ? $que : "*";
-        echo $sql="SELECT dia_max_prestamo FROM cappiutep.t_configuracion"; 
+         $sql="SELECT dia_max_prestamo FROM cappiutep.t_configuracion"; 
         return $this->consulta( $sql );
 
     }

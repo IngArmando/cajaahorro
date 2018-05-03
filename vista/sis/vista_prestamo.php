@@ -80,7 +80,7 @@ session_start();
        </tr>
        <?php
          $db=new CModeloDatos;
-         $sql="SELECT *  FROM cappiutep.t_beneficio_solicitud where id_solicitante='".$_POST['dni']."' AND estatus='4' ";
+         $sql="SELECT *  FROM cappiutep.t_beneficio_solicitud where id_solicitante='".$_POST['dni']."' AND fecha >'".date('Y-m-d')."' AND estatus='4' ";
          $as=$db->ejecutar($sql);
 
           while ($row=$db->getArreglo($as)) {

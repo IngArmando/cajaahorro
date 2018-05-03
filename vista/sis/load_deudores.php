@@ -19,7 +19,7 @@
           @include_once('../../modelo/MPgsql.php');
           $db=new CModeloDatos;
 
-          $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' ";
+          $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' AND fecha > '".date('Y-m-d')."'";
 
           /*$sql="SELECT *
           FROM cappiutep.t_beneficio_solicitud AS b

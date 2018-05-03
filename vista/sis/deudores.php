@@ -27,16 +27,25 @@ session_start();
              
     if($Soc['fcomun'] == 1){ $conectado =2;  
         
-          $sql="SELECT * from cappiutep.t_persona as tp 
-                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona
-              where tp.fcomun='1' AND tbs.estatus='4' order by tp.apellido1 asc
+           $sql="SELECT * from cappiutep.t_persona as tp 
+                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
+              where tp.fcomun='1' AND tbs.estatus='4' AND tbs.fecha > '".date('Y-m-d')."'  order by tp.apellido1 asc
           "; 
       
       }
 
 
-    if($Soc['fcesantia'] == 1){ $conectado =1;  $sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";}
+    if($Soc['fcesantia'] == 1){ $conectado =1; 
+     //$sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";
 
+       $sql="SELECT * from cappiutep.t_persona as tp 
+                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
+              where tp.fcesantia='' AND tbs.estatus='4' AND tbs.fecha > '".date('Y-m-d')."'  order by tp.apellido1 asc
+          "; 
+
+   }
+
+     
 
 ?>
 <html lang="es">
@@ -116,7 +125,9 @@ session_start();
       <script type="text/javascript">
    var t=0;
  </script>
- <table class="table table-bordered" id="data_tables" style="font-size: 13px;">
+
+ <form method="post" action="../../controlador/cdeudores.php">
+ <table class="table table-bordered" id="data_table" style="font-size: 13px;">
   <thead>
             <tr style="background: #EEE;">
               <td width="5%">N-º</td>
@@ -140,7 +151,7 @@ session_start();
           $db=new CModeloDatos;
          
 
-          $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' ";
+           $sql5="select * from cappiutep.t_beneficio_solicitud where id_beneficio='".$_GET['cod']."' AND fecha > '".date('Y-m-d')."' ";
 
            
 
@@ -207,65 +218,62 @@ session_start();
                 $aporte=$rowa['aporte'];
                 $aportado=$rowa['aportado'] + $rowa['deposito'];
               }
-
                 $suma=$montoc + $aporte;
                 $resta= $deuda2 + $aportado;
                 $dif=$suma - $resta; 
-
                 $desc=$deuda2 + $aportado;
-
               if($suma == $desc){}else{
 
-
-                $sqldt2=" select * from cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND anho='".date(Y)."' AND mes>='".$mes."' ";
+                 $sqldt2=" select * from cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND anho>='".date(Y)."'  ";
              $asd2=$dbdt->ejecutar($sqldt2);
               while ($rowdt2=$dbdt->getArreglo($asd2)) {
                 # code...
-                $td2++;
-                $pago+=$rowdt2['pago'];
+                $sumar=$rowdt2['descontado'] + $rowdt2['deposito'];
+                if($sumar == $rowdt2['pago']){
 
+                }else{
+                                      $td2++;
+                       $pago+=$rowdt2['pago'];
+                  }
 
               }
               $pago= $pago + $dif;
-
               $k++;
-
             echo '<script> t++; </script>';
-
             echo '
               <tr>
-                
-                  <td width="5%">'.$o.'</td>
-                  <td width="10%">'.$row['cedula'].'</td>
+                  <td width="5%">'.$o.' 
+                    <input type="hidden" name="bene['.$k.']" value="'.$row['id_beneficio_solicitud'].'">
+                    <input type="hidden" name="tipo['.$k.']" value="'.$row['id_beneficio'].'">
+                  </td>
+                  <td width="10%">'.$row['cedula'].'<input type="hidden" id="cedu'.$k.'" name="cedu'.$k.'" value="'.$row['id_persona'].'"></td>
                   <td width="20%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
                   <td width="20%">'.$row['apellido1'].' '.$row['apellido2'].'
-                      <!--table class="ui table" >
-                    <thead>
-                        <tr>
-                            <th height="10">Nro</th>
-                            <th height="20">Mes</th>
-                            <th height="40">Año</th>
-                            <th height="40">Capital</th>
-                            <th height="40">Interés</th>
-                            <th height="40">Cuota</th>
-                            <th height="40">Saldo</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaAmortizacion'.$k.'">
-
-                    </tbody>
-                </table--!>
+                      <table class="ui table" style="display:none;">
+                          <thead>
+                              <tr>
+                                  <th height="10">Nro</th>
+                                  <th height="20">Mes</th>
+                                  <th height="40">Año</th>
+                                  <th height="40">Capital</th>
+                                  <th height="40">Interés</th>
+                                  <th height="40">Cuota</th>
+                                  <th height="40">Saldo</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tablaAmortizacion'.$k.'"></tbody>
+                      </table>
                   </td>
                   <td width="10%">'.$suma.'</td>
                   <td width="10%">'.$resta.'</td>
                   <td width="10%">'.$dif.'</td>
                   <td width="10%">'.$pago.'
 
-                      <input type="hidden" name="Monto" id="Monto'.$k.'" style="background:#EEE;" readonly onkeypress="return soloNumeros(event)" maxlength="10" value="'.$pago.'">
-                       <input type="hidden" name="Interes" id="Interes'.$k.'" value="3" readonly>
+                      <input type="hidden" name="monto['.$k.']" id="Monto'.$k.'" style="background:#EEE;" readonly onkeypress="return soloNumeros(event)" maxlength="10" value="'.$pago.'">
+                       <input type="hidden" name="interes['.$k.']" id="Interes'.$k.'" value="4" readonly>
 
                   </td>
-                  <td width="15%"> <select class="form-control" name="Plazo" id="Plazo'.$k.'" onchange="ncalcularAmortizacion('.$k.',this.value)">'; 
+                  <td width="15%"> <select class="form-control" name="Plazo['.$k.']" id="Plazo'.$k.'" onchange="amortizacionNueva2('.$k.','.$row['id_persona'].')">'; 
 
                   for($y=$td2; $y<=48; $y++){
 
@@ -274,12 +282,12 @@ session_start();
 
                   echo' </select></td>
                  
-                  <td width="5%"><form method="post" action="vista_prestamo.php"> 
+                  <td width="5%">
 
                       <input type="hidden" name="dni" value="'.$row['id_persona'].'">
                       <input type="hidden" name="ano" value="'.$_GET['ano'].'">
                       <input type="hidden" name="mes" value="'.$_GET['me'].'">
-                      <input type="checkbox" name="" value="">
+                      <input type="checkbox" name="seleccionado['.$k.']" value="'.$row['id_persona'].'">
 
                      </td>
                 
@@ -388,7 +396,11 @@ session_start();
 
   </div>
 </div>
-    
+  <tr>
+    <th colspan="9"><center> <input type="submit" class="btn btn-success" name="" value="Extender"> </center></th>
+  </tr>
+    </table>
+  </form>
 </div>
 
 <?php
@@ -432,118 +444,98 @@ function colocarMontoTotalNomina(){
         MontoEspecial=$("#MontoEspecial").val();
         total = Monto - MontoEspecial;
         MontoSolicitarReal=$("#MontoSolicitarReal").val(total);
+}
 
+
+function amortizacionNueva2(p,ce){
+  
+    limpiarTablaAmortizacion2(p);
+    hoy = new Date();
+    mes = hoy.getMonth() + 1;
+    dia = hoy.getDate();
+    anho = hoy.getFullYear();
+    ultimoDia = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 0).getDate();
+    if(ultimoDia == 31) ultimoDia = 30;
+    if(dia.toString().length <= 1) dia = "0"+dia;
+    fecha = dia+"/"+mes+"/"+anho;
+    if(arguments.length==4){
+      prestamo = arguments[0];
+      plazo = arguments[1];
+      interes = arguments[2];
+      tbody = document.getElementById(arguments[3]);
+    }else{
+      prestamo = document.getElementById("Monto"+p).value;
+      plazo = document.getElementById("Plazo"+p).value;
+      interes = document.getElementById("Interes"+p).value;
+      tbody = document.getElementById('tablaAmortizacion'+p);
     }
-   
-    function calcularAmortizacion(ps,gi){
-
     
-        limpiarTablaAmortizacion2(ps);
-        auxHoy = new Date();
-        hoy = new Date();
-        //alert(hoy.getMonth());
-        mes = hoy.getMonth() + 1;
-        dia = hoy.getDate();
-        anho = hoy.getFullYear();
-        hoy = hoy.getDate()+"/"+(hoy.getMonth() + 1)+"/"+hoy.getFullYear();
-        prestamo = document.getElementById("Monto"+ps).value;
-        //prestamo = 0;
-        prestamoActual = 0;
-        //cuotas = document.getElementById("Plazo"+ps).value;
-        cuotas = gi;
-       // cantGiros = cuotas / 12 * 2;
-        cantGiros = gi;
-         //interes = document.getElementById("Interes"+ps).value;
-        interes = 3;
-        diasAnho = 360;
-        cuota = prestamo / cantGiros;
-        if(mes>=7){
-            entro = 1;
-            primermes = 12;
-            segundomes = 7;
-            diferencia = primermes - segundomes;
-            primerafecha = dia+"/12/"+anho;
+    capital = parseFloat(prestamo / plazo).toFixed(2);
+    capital_diario = parseFloat(prestamo / plazo / 30);
+    fecha2 = fecha.split("/");
+    fecha2 = fecha2[2]+"/"+fecha2[1]+"/"+fecha2[0];
+    auxPrestamo = prestamo;
+    /**
+        el primer capital se calcula en base a los dias que faltan del primer mes
+    **/
+    fecha3 = ultimoDia+"/"+mes+"/"+anho;
+    dias_terminar = calcularDiasRestantes(fecha,fecha3);
+
+    for(it=1;it<=plazo;it++){
+        row = it-1;
+       tr=tbody.insertRow(row);
+        td0 = tr.insertCell(0);
+        td1 = tr.insertCell(1);
+        td2 = tr.insertCell(2);
+        td3 = tr.insertCell(3);
+        td4 = tr.insertCell(4);
+        td5 = tr.insertCell(5);
+        td6 = tr.insertCell(6);
+      td0.innerHTML = it + "<input type='hidden' value='"+it+"' name='detalle_nro"+ce+"[]'>";;
+        auxFecha =  new Date(fecha2);
+        auxFecha.setMonth(auxFecha.getMonth() + it);
+        //auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
+        mes = auxFecha.getMonth();
+        if(mes==0){ mes = 12; fanho=auxFecha.getFullYear() -1; }else{ fanho=auxFecha.getFullYear(); }
+
+        //fanho=auxFecha.getFullYear()-1;
+
+        td1.innerHTML = mes + "<input type='hidden' value='"+mes+"' name='detalle_mes"+ce+"[]'>";
+        td2.innerHTML = fanho + "<input type='hidden' value='"+auxFecha.getFullYear()+"' name='detalle_anho"+ce+"[]'>";
+        td3.innerHTML = capital + "<input type='hidden' value='"+capital+"' name='detalle_capital"+ce+"[]'>";
+        if(it==1){
+            amortizacion = parseFloat(auxPrestamo * (interes / 100 / 12 )).toFixed(2);
+            amortizacion = amortizacion / 30 * dias_terminar;
+            amortizacion = parseFloat(amortizacion).toFixed(2);
         }else{
-            entro = 2;
-            primermes = 7;
-            segundomes = 12;
-            primerafecha = dia+"/7/"+anho;
+            amortizacion = parseFloat(auxPrestamo * (interes / 100 / 12)).toFixed(2);    
         }
-        fecha = primerafecha;
-        tbody = document.getElementById('tablaAmortizacion'+ps);
+        pago = parseFloat(parseFloat(capital) + parseFloat(amortizacion)).toFixed(2);
+        saldo = parseFloat(parseFloat(auxPrestamo) - parseFloat(capital)).toFixed(2);
+        auxPrestamo = saldo;
+        td4.innerHTML = amortizacion + "<input type='hidden' value='"+amortizacion+"' name='detalle_amortizacion"+ce+"[]'>";
+        td5.innerHTML = pago + "<input type='hidden' value='"+pago+"' name='detalle_pago"+ce+"[]'>";
 
-        for(it = 1;it<=cantGiros;it++){
-            row = it-1;
-            auxPrestamo = prestamo;
-            deuda = prestamo - cuota;
-            prestamo = deuda;
-            tr=tbody.insertRow(row);
-            td0 = tr.insertCell(0);
-            td1 = tr.insertCell(1);
-            td2 = tr.insertCell(2);
-            td3 = tr.insertCell(3);
-            td4 = tr.insertCell(4);
-            td5 = tr.insertCell(5);
+        tr=saldo.split('-');
 
-            td0.innerHTML = it;
-            if(it==1){
-                td1.innerHTML=fecha;
-                dias_pasados = calcularDiasRestantes(hoy,fecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-            }
-            fecha2 = fecha.split("/");
-            fecha2 = fecha2[2]+"/"+fecha2[1]+"/"+fecha2[0];
-            if(it>1 && it%2==0){
-                if(entro==2){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 5);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-                else if(entro==1){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 7);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
+        if(saldo <= 0){ saldo='0.00'; }else{ saldo=saldo; }
 
-                dias_pasados = calcularDiasRestantes(fecha,auxFecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-
-                fecha = auxFecha;
-                td1.innerHTML=auxFecha;
-            }else if(it>1 && it%2==1){
-                if(entro==2){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 7);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-                else if(entro==1){
-                    auxFecha =  new Date(fecha2);
-                    auxFecha.setMonth(auxFecha.getMonth() + 5);
-                    auxFecha = auxFecha.getDate()+"/"+(auxFecha.getMonth()+1)+"/"+auxFecha.getFullYear();
-                }
-
-                dias_pasados = calcularDiasRestantes(fecha,auxFecha);
-                giro = (auxPrestamo * interes / diasAnho * dias_pasados) / 100;
-
-                fecha = auxFecha;
-                td1.innerHTML=auxFecha;
-            }         
-                
-
-            //td2.innerHTML=cuota.toFixed(2);
-            td2.innerHTML=cuota.toFixed(2);
-            td3.innerHTML=giro.toFixed(2);
-            td4.innerHTML=(parseFloat(cuota)+parseFloat(giro)).toFixed(2);
-            td5.innerHTML=deuda.toFixed(2);
-        } 
+        td6.innerHTML = saldo + "<input type='hidden' value='"+saldo+"' name='detalle_saldo"+ce+"[]'>";
     }
+} 
 
-  /*    for(u=1; u<=t; u++){
-        //        calcularAmortizacion(u);
-        cu=document.getElementById("Plazo"+u);
-        calcularAmortizacion(u,cu.value);
+      for(u=1; u<=t; u++){
+          //      calcularAmortizacion(u);
+       // cu=document.getElementById("Plazo"+u);
+       ced=document.getElementById("cedu"+u+"");
+        amortizacionNueva2(u,ced.value);
 
-      }*/
+      }
+
+      function automatica(monto,pla){
+
+        window.open('extencion_automatica.php?monto='+monto+'&pla='+pla,'Mi ventana','width=1100,height=650,top=30,left=80');
+      }
 
 
 </script>
