@@ -177,11 +177,14 @@ public function guardarExtencion($tipo,$dni){
 
 
     public function ListarSolicitudes($estatus=0){
+
+       
+
+
         $consulta = $this->consulta("SELECT bs.*,b.nombre as tipo, concat(p.nombre1,' ',p.apellido1) as solicitante,p.id_persona
             FROM cappiutep.t_beneficio_solicitud as bs 
             inner join cappiutep.t_beneficio as b on b.id_beneficio = bs.id_beneficio
-            inner join cappiutep.t_persona_caja as pc on   pc.id_persona = bs.id_solicitante
-            inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona");
+            inner join cappiutep.t_persona as p on p.id_persona = bs.id_solicitante");
         while($data = $this->getArreglo($consulta)) $datos[] = $data;
         return $datos;
     }
