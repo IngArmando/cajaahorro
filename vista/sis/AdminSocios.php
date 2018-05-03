@@ -76,7 +76,7 @@ session_start();
    
 <h4 class="ui centered block dividing header">Listado de Socios Inscritos</h4>
         <?php
-            $listado=$lista->listar();
+            $listado=$lista->listar2();
             foreach ($listado as $tagtp){echo $tagtp;}
         ?>
 

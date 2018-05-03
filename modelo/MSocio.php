@@ -619,7 +619,7 @@ class Socio extends CModeloDatos  {
   public function listar()  
   {
 
-    $sql="SELECT a.*,b.*,c.nombre,d.nombre_largo
+    echo $sql="SELECT a.*,b.*,c.nombre,d.nombre_largo
               FROM
                  cappiutep.t_persona AS a
                  INNER JOIN cappiutep.t_persona_caja      AS b ON a.id_persona=b.id_persona
@@ -687,6 +687,78 @@ class Socio extends CModeloDatos  {
     $MarcasSelect[$pos++]="</tbody></table>";
     return $MarcasSelect;
   } 
+
+
+    public function listar2()  
+  {
+
+    echo $sql="SELECT a.*
+              FROM
+                 cappiutep.t_persona AS a
+                 INNER JOIN cappiutep.t_lista_valor       AS d ON a.id_condicion=d.id_lista_valor";
+
+    $MarcasSelect = array();
+    $pos=0;   
+    $MarcasSelect[$pos++] =" <table class='ui celled center aligned table' id='Tabla'>";    
+    $MarcasSelect[$pos++] =" <thead><tr>
+                  <th >C.I.</th>
+                  <th >Nombre y Apellido</th>
+                  <th >Cargo</th>
+                  <th >F Comun</th>
+                  <th >F Cesantia</th>
+                  <th class='collapsing'>Condición</th>
+                  <th >Acciones</th>
+                </tr></thead>
+                <tbody>"; 
+    
+    $resulSet = $this->consulta( $sql ) ; 
+    while($row= $this->getArreglo($resulSet))   
+    { 
+        $edit ="'AdminSociosEditar.php?id=".$row['id_persona']."'";
+        $cargo="'AdminSociosCargo.php?id=".$row['id_persona']."'";
+        $acciones='<div class="ui large buttons">
+                  <div class="ui icon button" data-content="Editar" data-variation="basic" onclick="window.location='.$edit.'">
+                    <i class="edit icon"></i>
+                  </div>
+                  <div class="ui icon button" data-content="Asignar Cargo" data-variation="basic" onclick="window.location='.$cargo.'">
+                    <i class="exchange icon"></i>
+                  </div>
+                  </div>
+                  
+                 ';
+    
+      switch ($row['nombre_largo']) {
+        case 'Solvente':
+          $status="<div class='ui green horizontal fluid label'> Solvente </div>";
+          break;
+
+            case 'No Solvente':
+              $status="<div class='ui yellow horizontal fluid label'> No Solvente   </div>";
+              break;
+
+        case 'Retirado':
+          $status="<div class='ui gray horizontal fluid label'> Retirado   </div>";
+          break;
+
+      }   
+
+      if($row['fcomun'] == 1){ $ima="../../image/bien.jpg"; }else{ $ima="../../image/malo.png"; }
+      if($row['fcesantia'] == 1){ $imac="../../image/bien.jpg"; }else{ $imac="../../image/malo.png"; }
+
+      $MarcasSelect[$pos++]="<tr>
+                   <td>".$row['cedula']."</td>
+                   <td>".$row['nombre1']." ".$row['apellido1']."</td>
+                   <td>".$row['nombre']."</td>
+                   <td><img src='".$ima."' style='width:20%;'></td>
+                   <td><img src='".$imac."' style='width:20%;'></td>
+                   <td>".$status."</td>
+                   <td>".$acciones."</td>
+                  </tr>";
+    }
+    $MarcasSelect[$pos++]="</tbody></table>";
+    return $MarcasSelect;
+  } 
+
 
 //--------------------------------------------------------------------
 //       Listar haberes
