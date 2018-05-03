@@ -96,8 +96,6 @@ session_start();
         </tr>
       </table>
 
-
-      a
         <div class="" id="muestra" style="width: 80%; margin: 0 auto;">
           
         </div>

@@ -178,10 +178,9 @@ session_start();
 
                    $dbde=new CModeloDatos;
 
-           $sqlde="SELECT *
+          $sqlde="SELECT *
           FROM cappiutep.t_beneficio_solicitud AS b
-          INNER JOIN cappiutep.t_persona_caja AS tpc ON tpc.id_persona=b.id_solicitante
-          INNER JOIN cappiutep.t_persona AS tp ON tp.id_persona=tpc.id_persona
+          INNER JOIN cappiutep.t_persona AS tp ON tp.id_persona=b.id_solicitante
           INNER JOIN cappiutep.t_detalle_amortizacion AS amt ON amt.id_beneficio_solicitud=b.id_beneficio_solicitud
           INNER JOIN cappiutep.t_beneficio AS tb ON tb.id_beneficio=b.id_beneficio
           WHERE b.id_solicitante=".$_POST['dni']." and amt.anho='".$_POST['ano']."' and amt.mes='".$_POST['mes']."' AND b.estatus='4'"; 

@@ -112,7 +112,7 @@
                           $sqlh="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
                           $df=$dbf->ejecutar($sqlh); $rowf=$dbf->getArreglo($df);
                     
-                      echo '$ '.number_format($rowf['aportes']); ?>
+                      echo '$ '.$rowf['aportes']; ?>
                       
                   </th>
                 </tr>
@@ -125,7 +125,7 @@
                           $sqly="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='1' ";
                           $dft=$dbt->ejecutar($sqly); $rowft=$dbt->getArreglo($dft);
                     
-                      echo '$ '.number_format($rowft['aportes']); ?>
+                      echo '$ '.$rowft['aportes']; ?>
                    </th>
 
                 </tr>

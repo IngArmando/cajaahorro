@@ -127,7 +127,7 @@ session_start();
  </script>
 
  <form method="post" action="../../controlador/cdeudores.php">
- <table class="table table-bordered" id="data_table" style="font-size: 13px;">
+ <table class="table table-bordered" id="data_tables" style="font-size: 13px;">
   <thead>
             <tr style="background: #EEE;">
               <td width="5%">N-º</td>

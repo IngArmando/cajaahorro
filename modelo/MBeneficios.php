@@ -122,8 +122,7 @@ class Beneficio extends CModeloDatos {
 
         switch($tipo){
             case 1: //aqui vamos a guardar el prestamo especial
-                $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas) VALUES( 
-                (SELECT * from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',1,'$this->interes' )";
+               echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
             break;
             case 2: //prestamo personal
                 echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";

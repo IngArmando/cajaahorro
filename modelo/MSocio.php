@@ -692,7 +692,7 @@ class Socio extends CModeloDatos  {
     public function listar2()  
   {
 
-    echo $sql="SELECT a.*
+     $sql="SELECT a.*
               FROM
                  cappiutep.t_persona AS a
                  INNER JOIN cappiutep.t_lista_valor       AS d ON a.id_condicion=d.id_lista_valor";

@@ -274,7 +274,7 @@
                 <!--   Fin de Valores para validaciones -->
                 <?php 
                     if ( $dia_max_prestamo < date('d') )
-                        echo '<input type="button" class="ui primary button" value="Solicitar" name="btnSolicitar" onclick="enviar(this.value)">';
+                        echo '<input type="submit" class="ui primary button" value="Solicitar" name="btnSolicitar" onclick="ennviar(this.value)">';
                 ?>
                 <!--<input type="submit" class="ui primary button" value="Solicitar" name="btnSolicitar">-->
                 <a class="ui red button" href="Prestamos.php">Cancelar</a>   
