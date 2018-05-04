@@ -156,7 +156,7 @@ switch($operacion){
             		  	$mensaje = "
             		  	<h3>Estimado(a) ".$Nombre1." ".$Apellido1."</h3> 
 				        <br/> 
-				        	Nos complace darle la bienvenida a CAPPIUTEP en línea. A partir de éste momento ya podrá acceder
+				        	Nos complace darle la bienvenida a Gobernacion de PASTAZA en línea. A partir de éste momento ya podrá acceder
 				        	al sistema. Su nombre de usuario y contraseña son los siguientes:
 				        <br/>
 				        <br/>
