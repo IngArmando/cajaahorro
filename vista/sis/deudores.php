@@ -29,7 +29,7 @@ session_start();
         
            $sql="SELECT * from cappiutep.t_persona as tp 
                 inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
-              where tp.fcomun='1' AND tbs.estatus='4' AND tbs.fecha > '".date('Y-m-d')."'  order by tp.apellido1 asc
+              where tp.fcomun='1' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
           "; 
       
       }
@@ -40,10 +40,12 @@ session_start();
 
        $sql="SELECT * from cappiutep.t_persona as tp 
                 inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
-              where tp.fcesantia='' AND tbs.estatus='4' AND tbs.fecha > '".date('Y-m-d')."'  order by tp.apellido1 asc
+              where tp.fcesantia='' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
           "; 
 
    }
+
+  // echo $sql; exit();
 
      
 
