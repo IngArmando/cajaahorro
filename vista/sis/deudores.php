@@ -25,25 +25,6 @@ session_start();
     }
 
              
-    if($Soc['fcomun'] == 1){ $conectado =2;  
-        
-           $sql="SELECT * from cappiutep.t_persona as tp 
-                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
-              where tp.fcomun='1' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
-          "; 
-      
-      }
-
-
-    if($Soc['fcesantia'] == 1){ $conectado =1; 
-     //$sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";
-
-       $sql="SELECT * from cappiutep.t_persona as tp 
-                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
-              where tp.fcesantia='' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
-          "; 
-
-   }
 
   // echo $sql; exit();
 
@@ -171,6 +152,25 @@ session_start();
           
            //  $sql="SELECT * from cappiutep.t_persona order by apellido1 asc";
 
+
+    if($Soc['fcomun'] == 1){ $conectado =2;  
+        
+           $sql="SELECT * from cappiutep.t_persona as tp 
+                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
+              where tp.fcomun='1' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
+          ";   
+      }
+
+
+    if($Soc['fcesantia'] == 1){ $conectado =1; 
+     //$sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";
+
+       $sql="SELECT * from cappiutep.t_persona as tp 
+                inner join cappiutep.t_beneficio_solicitud as tbs on tbs.id_solicitante=tp.id_persona 
+              where tp.fcesantia='1' AND tbs.estatus='4' AND tbs.fecha < '".date('Y-m-d')."'  order by tp.apellido1 asc
+          "; 
+   }
+
           
           $as=$db->ejecutar($sql);
 
@@ -194,8 +194,25 @@ session_start();
               if(date(m) == '11'){ $mes=12;}
               if(date(m) == '12'){ $mes=12;}
 
+               if($Soc['fcomun'] == 1){ 
 
-              $sqldt=" select * from cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND anho='".date(Y)."' AND mes='".$mes."' ";
+                    $sqldt="SELECT * from cappiutep.t_detalle_amortizacion as dta
+                            inner join cappiutep.t_beneficio_solicitud as tb on tb.id_beneficio='2'
+                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' AND dta.mes='".$mes."'
+                    ";
+
+                }
+              
+
+              if($Soc['fcesantia'] == 1){  
+                      $sqldt="SELECT * from cappiutep.t_detalle_amortizacion as dta
+                            inner join cappiutep.t_beneficio_solicitud as tb on tb.id_beneficio='1'
+                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' AND dta.mes='".$mes."'
+                    ";
+              }
+
+             // echo $sqldt; echo '<br>';
+            
              $asd=$dbdt->ejecutar($sqldt);
               while ($rowdt=$dbdt->getArreglo($asd)) {
                 # code...
@@ -209,10 +226,18 @@ session_start();
               }
 
 
+                if($Soc['fcomun'] == 1){ 
+
+                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."' AND mes='".$mes."' AND tipo='2' ";
+                }
+              
+
+              if($Soc['fcesantia'] == 1){  
+                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."' AND mes='".$mes."' AND tipo='1' ";
+              }
 
 
-
-               $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."' AND mes='".$mes."' ";
+               
 
               $asa=$dba->ejecutar($sqla);
               while ($rowa=$dba->getArreglo($asa)) {

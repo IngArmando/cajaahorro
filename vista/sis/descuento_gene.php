@@ -11,6 +11,26 @@ session_start();
            $sql2="select * from cappiutep.t_persona where id_persona='".$_POST['dni']."' ";
 
           $ass=$dbp->ejecutar($sql2);  $rowp=$dbp->getArreglo($ass);
+
+          @include_once("../../modelo/MSocio.php");
+    $OSocio = new Socio();
+
+
+    if (isset($_SESSION["userActivo"]))
+    {
+        $OSocio -> setCedula($_SESSION["userActivo"]);
+        $registro=$OSocio -> busCedula();
+        while ( $fila = $OSocio->setArreglo( $registro ))
+          $datos[] = $fila;
+      foreach ($datos as $Soc) { $Soc; }
+
+    }
+
+    if($Soc['fcomun'] == 1){ $conectado =2; }
+
+
+    if($Soc['fcesantia'] == 1){ $conectado =1; }
+
 ?>
 <html lang="es">
 <head>
@@ -87,7 +107,7 @@ session_start();
              $sqla="SELECT *,ap.aporte as aporte_a 
             from cappiutep.aporte as ap
                    inner join cappiutep.t_persona as tpe on tpe.id_persona = ap.id_persona
-                   where ap.id_persona=".$_POST['dni']." AND ap.ano='".$_POST['ano']."' AND ap.mes='".$_POST['mes']."' ";
+                   where ap.id_persona=".$_POST['dni']." AND ap.ano='".$_POST['ano']."' AND ap.mes='".$_POST['mes']."' AND ap.tipo='".$conectado."' ";
 
                    $apo=$dbd1->ejecutar($sqla);
 
@@ -183,7 +203,7 @@ session_start();
           INNER JOIN cappiutep.t_persona AS tp ON tp.id_persona=b.id_solicitante
           INNER JOIN cappiutep.t_detalle_amortizacion AS amt ON amt.id_beneficio_solicitud=b.id_beneficio_solicitud
           INNER JOIN cappiutep.t_beneficio AS tb ON tb.id_beneficio=b.id_beneficio
-          WHERE b.id_solicitante=".$_POST['dni']." and amt.anho='".$_POST['ano']."' and amt.mes='".$_POST['mes']."' AND b.estatus='4'"; 
+          WHERE b.id_solicitante=".$_POST['dni']." and amt.anho='".$_POST['ano']."' and amt.mes='".$_POST['mes']."' AND b.estatus='4' AND b.id_beneficio='".$conectado."' "; 
 
                 $assde=$dbde->ejecutar($sqlde);
 
