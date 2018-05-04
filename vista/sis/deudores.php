@@ -198,7 +198,7 @@ session_start();
 
                     $sqldt="SELECT * from cappiutep.t_detalle_amortizacion as dta
                             inner join cappiutep.t_beneficio_solicitud as tb on tb.id_beneficio='2'
-                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' AND dta.mes='".$mes."'
+                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' order by dta.nro limit 1
                     ";
 
                 }
@@ -207,11 +207,11 @@ session_start();
               if($Soc['fcesantia'] == 1){  
                       $sqldt="SELECT * from cappiutep.t_detalle_amortizacion as dta
                             inner join cappiutep.t_beneficio_solicitud as tb on tb.id_beneficio='1'
-                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' AND dta.mes='".$mes."'
+                            where dta.id_beneficio_solicitud='".$row['id_beneficio_solicitud']."' AND dta.anho='".date(Y)."' order by dta.nro limit 1
                     ";
               }
 
-             // echo $sqldt; echo '<br>';
+            //  echo $sqldt; echo '<br>';
             
              $asd=$dbdt->ejecutar($sqldt);
               while ($rowdt=$dbdt->getArreglo($asd)) {
@@ -220,6 +220,7 @@ session_start();
 
                   $deuda2= $rowdt['descontado'] + $rowdt['deposito'];
                   $deuda=$rowdt['pago'] - $deuda2;
+                  //$montoc=$rowdt['pago'];
                   $montoc=$rowdt['pago'];
 
 
@@ -228,12 +229,12 @@ session_start();
 
                 if($Soc['fcomun'] == 1){ 
 
-                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."' AND mes='".$mes."' AND tipo='2' ";
+                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."'  AND tipo='2' ";
                 }
               
 
               if($Soc['fcesantia'] == 1){  
-                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."' AND mes='".$mes."' AND tipo='1' ";
+                    $sqla="select * from cappiutep.aporte where id_persona='".$row['id_persona']."' AND ano='".date(Y)."'  AND tipo='1' ";
               }
 
 
@@ -246,6 +247,7 @@ session_start();
                 $aportado=$rowa['aportado'] + $rowa['deposito'];
               }
                 $suma=$montoc + $aporte;
+                //$suma=$montoc;
                 $resta= $deuda2 + $aportado;
                 $dif=$suma - $resta; 
                 $desc=$deuda2 + $aportado;
@@ -261,10 +263,12 @@ session_start();
                 }else{
                                       $td2++;
                        $pago+=$rowdt2['pago'];
+                       $sumaddo+=$rowdt2['descontado'] + $rowdt2['deposito'];
                   }
 
               }
-              $pago= $pago + $dif;
+              $pago=  ($pago - $sumaddo) + $dif ;
+              //$pago= $pago + $dif;
               $k++;
             echo '<script> t++; </script>';
             echo '
@@ -321,7 +325,7 @@ session_start();
                 
               </tr>
             ';
-                 $td=''; $deuda2=0; $deuda=0; $montoc=0; $aporte=0; $aportado=0; $suma=0; $resta=0; $dif=0; $desc=0; $td2=0; $pago=0;
+                 $td=''; $deuda2=0; $deuda=0; $montoc=0; $aporte=0; $aportado=0; $suma=0; $resta=0; $dif=0; $desc=0; $td2=0; $pago=0; $sumaddo=0;
             }
           }
      ?>
