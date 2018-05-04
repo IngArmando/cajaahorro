@@ -140,7 +140,7 @@ session_start();
               <td width="10%">Descontado</td>
               <td width="10%">Diferencia</td>
               <td width="10%">Credito</td>
-              <td width="15%">Cuotas</td>
+              <td width="25%">Cuotas</td>
               <td width="10%"></td>
 
             </tr>
@@ -275,7 +275,7 @@ session_start();
                        <input type="hidden" name="interes['.$k.']" id="Interes'.$k.'" value="4" readonly>
 
                   </td>
-                  <td width="15%"> <select class="form-control" name="Plazo['.$k.']" id="Plazo'.$k.'" onchange="amortizacionNueva2('.$k.','.$row['id_persona'].')">'; 
+                  <td width="25%"> <select class="" name="Plazo['.$k.']" id="Plazo'.$k.'" onchange="amortizacionNueva2('.$k.','.$row['id_persona'].')">'; 
 
                   for($y=$td2; $y<=48; $y++){
 
