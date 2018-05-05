@@ -267,7 +267,7 @@ session_start();
                   }
 
               }
-              $pago=  ($pago - $sumaddo) + $dif ;
+              $pago=  ($pago - $sumaddo) ;
               //$pago= $pago + $dif;
               $k++;
             echo '<script> t++; </script>';
