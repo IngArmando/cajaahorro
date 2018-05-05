@@ -122,10 +122,10 @@ class Beneficio extends CModeloDatos {
 
         switch($tipo){
             case 1: //aqui vamos a guardar el prestamo especial
-               echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
+                $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
             break;
             case 2: //prestamo personal
-                echo $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
+                $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,monto_pago_especial) VALUES( (SELECT id_persona from  cappiutep.t_persona  where cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->monto_especial')";
             break;
             case 3: //financimiaento
                 $sql = "INSERT INTO cappiutep.t_beneficio_solicitud(id_solicitante,id_beneficio,fecha,monto,cuotas,interes_cuotas,observacion) VALUES( (SELECT pc.id_persona_caja FROM cappiutep.t_persona_caja as pc inner join cappiutep.t_persona as p on p.id_persona = pc.id_persona where p.cedula = '$this->solicitante'),".$tipo.",CURRENT_DATE,'$this->monto',$this->cuotas,'$this->interes','$this->observacion')";
