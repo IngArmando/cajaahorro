@@ -38,7 +38,7 @@
 	$lobjPdf->Cell(0,7,utf8_decode("Fecha de Ingreso"),"LTR",1,"L");
 	$lobjPdf->SetFont("arial","",11);
 	$lobjPdf->Cell(80,7,utf8_decode($Soc['nombre1']." ".$Soc['nombre2']." ".$Soc['apellido1']." ".$Soc['apellido2']),"LBR",0,"L");
-	$lobjPdf->Cell(50,7,utf8_decode($Soc['nacionalidad'].'-'.$Soc['cedula']),"LBR",0,"C");
+	$lobjPdf->Cell(50,7,utf8_decode($Soc['cedula']),"LBR",0,"C");
 	$lobjPdf->Cell(0,7,utf8_decode($OSocio->set_fecha($Soc['fechaafi'])),"LBR",1,"C");
 	$lobjPdf->SetFont("arial","",11);
 
@@ -76,7 +76,7 @@
 					$estado='Liquidado';
 					break;
 				case '5':
-					$estado='Rechazado (Análisis)';
+					$estado='Pagado';
 					break;
 				case '6':
 					$estado='Rechazado (Junta Dir.)';
@@ -87,6 +87,22 @@
 			$lobjPdf->Cell(35,8,"Bs. ".number_format($Lista['monto'], 2, ',', '.'),1,0,'C');
 			$lobjPdf->Cell(65,8,utf8_decode($Lista['tipo']),1,0,'C');
 			$lobjPdf->Cell(0,8, utf8_decode($estado),1,1,'C');
+
+			$lobjPdf->SetFont("arial","B",10);
+			$lobjPdf->SetTextColor(255);
+			$lobjPdf->Cell(196,8, utf8_decode('Tabla de Amortizacion'),1,1,'C',true);
+
+			$lobjPdf->SetFont("arial","B",8);
+
+			$lobjPdf->Cell(43,8,'xxxx',0,0,'C');
+			$lobjPdf->Cell(10,8, utf8_decode('Nº'),1,0,'C',true);
+			$lobjPdf->Cell(15,8, utf8_decode('Mes'),1,0,'C',true);
+			$lobjPdf->Cell(15,8, utf8_decode('Año'),1,0,'C',true);
+			$lobjPdf->Cell(20,8, utf8_decode('Cuota'),1,0,'C',true);
+			$lobjPdf->Cell(20,8, utf8_decode('Descontado'),1,0,'C',true);
+			$lobjPdf->Cell(20,8, utf8_decode('Estatus'),1,0,'C',true);
+
+
 		}
 	}
 

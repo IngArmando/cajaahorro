@@ -64,6 +64,7 @@
     <script src="../../css/SemanticUI/semantic.js"></script><!-- Interface de usuario -->
     <script src="../../js/jquery-ui/jquery-ui.js"></script><!-- Selector de fecha -->
     <script src="../../js/jquery-ui/jquery-ui.js"></script><!-- Selector de fecha -->
+    <script src="../../js/bootstrap.min.js"></script><!-- Selector de fecha -->
 </head>
 <body>  
     <?php include_once('Menu.php'); ?> <!-- Menu Lateral -->

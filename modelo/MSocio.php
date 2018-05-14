@@ -333,8 +333,7 @@ class Socio extends CModeloDatos  {
                                                   ( 5,7,$this->IdUser),
                                                   ( 6,4,$this->IdUser),
                                                   ( 6,7,$this->IdUser),
-                                                  ( 7,4,$this->IdUser),
-                                                  ( 7,7,$this->IdUser)
+                                                  ( 26,7,$this->IdUser)
                                                     ;";
            $hecho = $this->query( $sql );
          }
