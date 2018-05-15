@@ -32,7 +32,8 @@
             if($row['estatus'] == 2){ $estatus='Esperando Aprobacion'; }
             if($row['estatus'] == 3){ $estatus='Aprobado'; }
             if($row['estatus'] == 4){ $estatus='Liquidado';}
-            if($row['estatus'] == 5){ $estatus='Saldado Prestamo';}
+            if($row['estatus'] == 5){ $estatus='Rechazado';}
+            if($row['estatus'] == 6){ $estatus='Prestamo Pagado';}
 
             echo '
               <tr>
@@ -42,9 +43,15 @@
                   <td width="">'.$row['monto'].'</td>
                   <td width="">'.$row['cuotas'].' </td>
                   <!--td width="">'.$estatus.' </td!-->
-                  <td><button class="btn btn-success" name="" title="Tabla Amortizacion" onclick="abrir_ventana('.$row['id_beneficio_solicitud'].')" value=""><span class="glyphicon glyphicon-list-alt"></span></button></td>
-                
-                
+                  <td>';
+
+                  if($row['estatus'] != 2){}
+
+                   echo ' <button class="btn btn-success" name="" title="Tabla Amortizacion" onclick="abrir_ventana('.$row['id_beneficio_solicitud'].')" value=""><span class="glyphicon glyphicon-list-alt"></span></button>';
+
+                 
+                echo '
+                	</td>
               </tr>
             ';
           }

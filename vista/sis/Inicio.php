@@ -109,10 +109,15 @@
                           $dbt=new CModeloDatos;
                           $dbf=new CModeloDatos;
 
-                          $sqlh="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
+                         $sqlh="select sum(aportado,aportado_fondo) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
                           $df=$dbf->ejecutar($sqlh); $rowf=$dbf->getArreglo($df);
+
+                           $sqlha="select sum(aportado_fondo) as aportesf from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
+                          $dfa=$dbf->ejecutar($sqlha); $rowf=$dbf->getArreglo($dfa);
+
+                          $ap=$rowf['aportes'] + $rowf['aportesf'];
                     
-                      echo '$ '.$rowf['aportes']; ?>
+                      echo '$ '.$ap; ?>
                       
                   </th>
                 </tr>
@@ -124,8 +129,14 @@
 
                           $sqly="select sum(aportado) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='1' ";
                           $dft=$dbt->ejecutar($sqly); $rowft=$dbt->getArreglo($dft);
+
+                           $sqlya="select sum(aportado_fondo) as aportesf from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='1' ";
+                          $dfta=$dbt->ejecutar($sqlya); $rowft=$dbt->getArreglo($dfta);
+
+                          $apa=$rowft['aportes'] + $rowft['aportesf'];
+
                     
-                      echo '$ '.$rowft['aportes']; ?>
+                      echo '$ '.$apa; ?>
                    </th>
 
                 </tr>

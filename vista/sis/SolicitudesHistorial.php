@@ -23,10 +23,11 @@ session_start();
       foreach ($datos as $Soc) { $Soc; }
 
     }
-
              
-    if($Soc['fcomun'] == 1){ $conectado =2;  $sql="SELECT * from cappiutep.t_persona where fcomun='1' order by apellido1 asc"; }
-    if($Soc['fcesantia'] == 1){ $conectado =1;  $sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";}
+    if($Soc['fcomun'] == 1){ $conectado =2;  $sql="SELECT * from cappiutep.t_persona where fcomun='1' order by apellido1 asc"; $conectadof=1; }
+    if($Soc['fcesantia'] == 1){ $conectado =1;  $sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc"; }
+
+
 
 
 ?>
@@ -89,19 +90,22 @@ session_start();
      <td> 
           <select class="ui search dropdown selection" name="" id="fondo" >
             <?php
-              if($conectado == 1){ echo '<option value="1">Cesantia</option>'; }
-              if($conectado == 2){ echo '<option value="2">Comun</option>'; }
+
+              if($Soc['fcomun'] == 1){  echo '<option value="2">Comun</option>'; }
+              if($Soc['fcesantia'] == 1){  echo '<option value="1">Cesantia</option>'; }
             ?>
           </select>
      </td>
         
      <td>
-        <select class="ui dropdown" name="" id="esta" onchange="ver_deudas(this.value,<?php $Soc['id_persona']; ?>)" readonly>
+        <select class="ui dropdown" name="" id="esta" onchange="ver_deudas(this.value,<?php echo $Soc['id_persona'];?>)" readonly>
                    <option value="0">Seleccione</option>
-                   <option value="1">En análisis</option>
+                   <!--option value="1">En análisis</option!-->
                    <option value="2">Esperando aprobación</option>
                    <option value="3">Aprobado</option>
                    <option value="4">Liquidado</option>
+                   <option value="5">Rechazado</option>
+                   <option value="6">Prestamo Pagado</option>
         </select>
      </td>
    </tr>
@@ -141,27 +145,24 @@ session_start();
       } );
 
       
-      function ver_deudas(v,id){
+      function ver_deudas(v,d){
 
             f=document.getElementById('fondo');
             h=document.getElementById('ver_historial');
             e=document.getElementById('esta');
-
-          
-
 
               if(v == 0){
                   
                   h.innerHTML='';
               }else{
                 v=f.value;
-               // alert(v+' * '+e.value);
-                $("#ver_historial").load('load_historial.php?cod='+v+'&esta='+e.value+'&id='+id);  
+                //alert(v+' * '+e.value+' # '+id);
+                $("#ver_historial").load('load_historial.php?cod='+v+'&esta='+e.value+'&id='+d);  
               }
 
       }
 
-      
+
 
 
   </script>

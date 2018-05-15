@@ -23,6 +23,21 @@ session_start();
 		case 'Liquidar':
 			if($OBenef->liquidarSolicitud())
 			{
+    			$db = new Socio();
+    			$sqll="select * from cappiutep.t_detalle_amortizacion where id_beneficio_solicitud='".$_POST["idSolicitud"]."' ";
+
+    			$as=$db->ejecutar($sqll);
+
+          		while ($row=$db->getArreglo($as)) {
+          			$pago=$row['pago'];
+          			$sqlupdate="update cappiutep.t_detalle_amortizacion set descontado='".$pago."' where  id_detalle_amortizacion='".$row['id_detalle_amortizacion']."' ";
+    					$db2 = new Socio();
+    					$db2->ejecutar($sqlupdate);
+
+          		}
+
+
+
 				$mensaje = "
 		        	Estimado Socio, le notificamos que Su prestamo a sido liquidado Sastifactoriamente
 			        <br/>
