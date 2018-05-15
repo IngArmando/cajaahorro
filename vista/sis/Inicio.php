@@ -115,7 +115,9 @@
                            $sqlha="select sum(aportado_fondo) as aportesf from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
                           $dfa=$dbf->ejecutar($sqlha); $rowf=$dbf->getArreglo($dfa);
 
-                          $ap=$rowf['aportes'] + $rowf['aportesf'];
+                          $ap=$rowf['aportes'] + $rowf['aportesf'] + $Soc["aporte_comun"];
+
+                         
                     
                       echo '$ '.$ap; ?>
                       
@@ -133,7 +135,7 @@
                            $sqlya="select sum(aportado_fondo) as aportesf from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='1' ";
                           $dfta=$dbt->ejecutar($sqlya); $rowft=$dbt->getArreglo($dfta);
 
-                          $apa=$rowft['aportes'] + $rowft['aportesf'];
+                          $apa=$rowft['aportes'] + $rowft['aportesf'] + $Soc['aporte_cesantia'];
 
                     
                       echo '$ '.$apa; ?>

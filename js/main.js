@@ -194,6 +194,7 @@ function amortizacionNueva() {
       
       pago = parseFloat(parseFloat(capital) + parseFloat(amortizacion)).toFixed(2);
       saldo = parseFloat(parseFloat(auxPrestamo) - parseFloat(capital)).toFixed(2);
+      if(saldo < 0 ){ saldo='0.00'; }else{ saldo=saldo; }
       auxPrestamo = saldo;
       td4.innerHTML = amortizacion + "<input type='hidden' value='"+amortizacion+"' name='detalle_amortizacion[]'>";
       td5.innerHTML = pago + "<input type='hidden' value='"+pago+"' name='detalle_pago[]'>";
