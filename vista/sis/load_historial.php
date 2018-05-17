@@ -6,6 +6,7 @@
           <th>Fecha</th>
           <th>Monto</th>
           <th>Cuotas</th>
+          <th width="10">Estatus</th>
           <th width="5%">Amortizacion</th>
         </tr>
      </thead>
@@ -19,7 +20,14 @@
          
              //$sql="SELECT * from cappiutep.t_beneficio_solicitud as tb where id_beneficio='".$_GET['cod']."' and estatus='".$_GET['esta']."' order by fecha DESC";
 
-             $sql="SELECT * from cappiutep.t_beneficio_solicitud as tb where id_solicitante='".$_GET['id']."' and  id_beneficio='".$_GET['cod']."' and estatus='".$_GET['esta']."' order by fecha DESC";
+            if($_GET['esta'] == 'T'){
+                $sql="SELECT * from cappiutep.t_beneficio_solicitud as tb where id_solicitante='".$_GET['id']."' and  id_beneficio='".$_GET['cod']."'  order by fecha DESC";
+            }else{
+
+              $sql="SELECT * from cappiutep.t_beneficio_solicitud as tb where id_solicitante='".$_GET['id']."' and  id_beneficio='".$_GET['cod']."' and estatus='".$_GET['esta']."' order by fecha DESC"; 
+            }
+
+             
           
           $as=$db->ejecutar($sql);
 
@@ -42,7 +50,7 @@
                   <td width="">'.date('d-m-Y',strtotime($row['fecha'])).' </td>
                   <td width="">'.$row['monto'].'</td>
                   <td width="">'.$row['cuotas'].' </td>
-                  <!--td width="">'.$estatus.' </td!-->
+                  <td width="10%">'.$estatus.' </td>
                   <td>';
 
                   if($row['estatus'] != 2){}

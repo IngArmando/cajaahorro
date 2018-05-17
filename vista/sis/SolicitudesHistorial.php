@@ -106,6 +106,7 @@ session_start();
                    <option value="4">Liquidado</option>
                    <option value="5">Rechazado</option>
                    <option value="6">Prestamo Pagado</option>
+                   <option value="T">Todos</option>
         </select>
      </td>
    </tr>
