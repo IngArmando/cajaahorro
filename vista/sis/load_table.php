@@ -1,6 +1,13 @@
 <script type="text/javascript">
    var t=0;
  </script>
+
+ <center> <button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-print"></span> Imprimir</button> </center>
+
+ <input type="hidden" name="ano" value="<?php echo $_GET['ano'];?> ">
+ <input type="hidden" name="mes" value="<?php echo $_GET['me']; ?>">
+
+
  <table class="table table-bordered" id="data_table">
   <thead>
             <tr style="background: #EEE;">
@@ -8,7 +15,9 @@
               <td width="10%">Dni</td>
               <td width="25%">Nombres</td>
               <td width="25%">Apellidos</td>
-              <td width="10%"></td>
+              <td width="10%">
+                 
+              </td>
 
             </tr>
    </thead>
@@ -28,11 +37,16 @@
           INNER JOIN cappiutep.t_detalle_amortizacion AS amt ON amt.id_beneficio_solicitud=b.id_beneficio_solicitud
           WHERE b.id_beneficio=".$_GET['cod']." and amt.anho='".$_GET['ano']."' and amt.mes='".$_GET['me']."'";
           */
+
+            if($_GET['fo'] == 1){ $d="AND fcesantia='1' "; $dt="where fcesantia='1' "; }else{ $d="AND fcomun='1' "; $dt="where fcomun='1' "; }
+
           if($_GET['cod'] =='T'){
-             $sql="SELECT * from cappiutep.t_persona order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona ".$dt." order by apellido1 asc";
           }else{
-             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='".$_GET['cod']."' order by apellido1 asc";
+             $sql="SELECT * from cappiutep.t_persona where id_tipo_persona='".$_GET['cod']."' ".$d." order by apellido1 asc";
           }
+
+
 
           $as=$db->ejecutar($sql);
 
@@ -48,12 +62,24 @@
                   <td width="10%">'.$row['cedula'].'</td>
                   <td width="35%">'.$row['nombre1'].' '.$row['nombre2'].'</td>
                   <td width="35%">'.$row['apellido1'].' '.$row['apellido2'].'</td>
-                  <td width="5%"><form method="post" action="descuento_gene.php"> 
+                  <input type="hidden" name="ano" value="'.$_GET['ano'].'">
+                  <input type="hidden" name="mes" value="'.$_GET['me'].'">
+
+                  <td width="5%">
+
+
+                      <input type="hidden" name="dn[]" value="'.$row['id_persona'].'">
+                      <input type="hidden" name="cedula[]" value="'.$row['cedula'].'">
+                      <input type="hidden" name="nombres[]" value="'.$row['nombre1'].' '.$row['nombre2'].'">
+                      <input type="hidden" name="apellidos[]" value="'.$row['apellido1'].' '.$row['apellido2'].'">
+
+                  <form method="post" action="descuento_gene.php"> 
 
                       <input type="hidden" name="dni" value="'.$row['id_persona'].'">
                       <input type="hidden" name="ano" value="'.$_GET['ano'].'">
                       <input type="hidden" name="mes" value="'.$_GET['me'].'">
-                      <button class="btn btn-success" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button></form></td>
+                      <button class="btn btn-success" type="submit" name="" value=""><span class="glyphicon glyphicon-search"></span></button>
+                  </form></td>
                 
                 
               </tr>

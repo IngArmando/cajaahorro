@@ -1,9 +1,28 @@
 <?php
 session_start();
     require_once("../../controlador/CRoles.php");
-
     include_once("../../modelo/MCombo.php");
     $combo = new Combo();
+
+     include_once("../../modelo/MSocio.php");
+    $OSocio = new Socio();
+
+
+    if (isset($_SESSION["userActivo"]))
+    {
+        $OSocio -> setCedula($_SESSION["userActivo"]);
+        $registro=$OSocio -> busCedula();
+        while ( $fila = $OSocio->setArreglo( $registro ))
+          $datos[] = $fila;
+      foreach ($datos as $Soc) { $Soc; }
+
+    }
+
+             
+    if($Soc['fcomun'] == 1){ $conectado =2;  $sql="SELECT * from cappiutep.t_persona where fcomun='1' order by apellido1 asc"; }
+    if($Soc['fcesantia'] == 1){ $conectado =1;  $sql="SELECT * from cappiutep.t_persona where fcesantia='1' order by apellido1 asc";}
+
+
 ?>
 <html lang="es">
 <head>
@@ -76,15 +95,17 @@ session_start();
               </select>
             </td>
 
-             <td><?php $tagcbotp=$combo->gen_combo2("SELECT * from cappiutep.t_tipo_persona","id_tipo_persona","nombre", isset($_GET[''])?$_GET['']:'','txtUsuario',' class="ui search dropdown selection" onchange="ver_bienes(this.value)"');
+             <td><?php $tagcbotp=$combo->gen_combo2("SELECT * from cappiutep.t_tipo_persona","id_tipo_persona","nombre", isset($_GET[''])?$_GET['']:'','txtUsuario',' class="ui search dropdown selection" onchange="ver_bienes(this.value,'.$conectado.')"');
                   foreach ($tagcbotp as $tagtp){echo $tagtp;}
             ?>   
             </td>
         </tr>
     </table>
 
-    <div class="" id="muestra_tabla"></div>
-
+    <form method="post" name="" action="reportes/descuento/general.php" target="blanck">
+    	<input type="hidden" name="fondo" value="<?php echo $conectado;?>">
+     <div class="" id="muestra_tabla"></div>
+    </form>
        
 
   </div>
@@ -117,7 +138,7 @@ session_start();
 
 <script type="text/javascript">
   
-  function ver_bienes(a) {
+  function ver_bienes(a,fo) {
     // body...
 
     
@@ -128,6 +149,6 @@ session_start();
     me=ms.value;
     anos=an.value;
 
-    $("#muestra_tabla").load('load_table.php?cod='+a+'&me='+me+'&ano='+anos);
+    $("#muestra_tabla").load('load_table.php?cod='+a+'&me='+me+'&ano='+anos+'&fo='+fo);
   }
 </script>

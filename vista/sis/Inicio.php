@@ -108,16 +108,18 @@
                           @include_once('../../modelo/MPgsql.php');
                           $dbt=new CModeloDatos;
                           $dbf=new CModeloDatos;
+                          $dbca=new CModeloDatos;
 
                          $sqlh="select sum(aportado,aportado_fondo) as aportes from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
                           $df=$dbf->ejecutar($sqlh); $rowf=$dbf->getArreglo($df);
-
                            $sqlha="select sum(aportado_fondo) as aportesf from cappiutep.aporte where id_persona='".$Soc["id_persona"]."' AND tipo='2' ";
                           $dfa=$dbf->ejecutar($sqlha); $rowf=$dbf->getArreglo($dfa);
-
                           $ap=$rowf['aportes'] + $rowf['aportesf'] + $Soc["aporte_comun"];
 
-                         
+                          $sqlca="select sum(monto) as resta_aporte from cappiutep.contra_aporte where tipo='2' AND id_persona='".$Soc["id_persona"]."' ";
+                          $ca=$dbt->ejecutar($sqlca); $rowca=$dbf->getArreglo($ca);
+
+                         $ap=$ap-$rowca['resta_aporte'];
                     
                       echo '$ '.$ap; ?>
                       
@@ -136,6 +138,11 @@
                           $dfta=$dbt->ejecutar($sqlya); $rowft=$dbt->getArreglo($dfta);
 
                           $apa=$rowft['aportes'] + $rowft['aportesf'] + $Soc['aporte_cesantia'];
+
+                          $sqlca="select sum(monto) as resta_aporte from cappiutep.contra_aporte where tipo='1' AND id_persona='".$Soc["id_persona"]."' ";
+                          $ca=$dbt->ejecutar($sqlca); $rowca=$dbf->getArreglo($ca);
+
+                         $apa=$apa-$rowca['resta_aporte'];
 
                     
                       echo '$ '.$apa; ?>
